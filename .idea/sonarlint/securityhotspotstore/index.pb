@@ -70,3 +70,5 @@ I
 Q.idea/sonarlint/securityhotspotstore/3/3/3393394e21dbac7686e91ad17c5283fb052d67f3,c\c\cc316c6147a0ab433b897a138aeeec5dac9ce1d1
 Å
 Q.idea/sonarlint/securityhotspotstore/5/2/52c961376029165b06e7861b1dc68c3b2455eeff,d\0\d00bd910c269378dd6a1b73c5cd7d1e3c1490753
+F
+src/app/karir/page.tsx,b\7\b7d5c1ee14d85e2adeaf2cc3c586f69f8d9081e5
