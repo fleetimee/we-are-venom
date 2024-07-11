@@ -115,7 +115,7 @@ const Magang = () => {
 
                 {/* Section List Magang Program */}
                 <div
-                    className="flex flex-col justify-center items-center w-full bg-white h-[400px] relative z-10 -mt-32">
+                    className="flex flex-col justify-center items-center w-full bg-white h-min-[400px] relative z-10">
                     <h1 className="text-darkBlue font-semibold text-3xl">Program Magang Kerja</h1>
                     <br/>
                     <p
@@ -132,13 +132,15 @@ const Magang = () => {
                     >
                         Cek informasi lebih lanjut mengenai lowongan magang bakti yang tersedia berikut ini:
                     </p>
+
+                    {/* Magang Teknologi Informasi */}
                     <div className="w-full md:w-2/3 lg:w-1/2 mt-6">
                         <button
                             className="w-full bg-white shadow-lg rounded-lg p-6 flex items-center hover:shadow-xl transition-shadow duration-300"
-                            onClick={() => window.location.href = '/your-target-url'}>
+                            onClick={() => window.location.href = '/magang/#'}>
                             <div className="w-1/4">
                                 <Image
-                                    src="/images/magang.png"
+                                    src="/images/magang-ti.jpeg"
                                     alt="Magang"
                                     width={150}
                                     height={150}
@@ -147,11 +149,74 @@ const Magang = () => {
                             </div>
                             <div className="w-3/4 pl-6 text-left">
                                 <h2 className="text-xl font-bold mb-2 text-darkBlue">Magang - Teknologi Informasi</h2>
-                                <p className="text-black">Cek informasi lebih lanjut mengenai lowongan magang bakti yang
-                                    tersedia berikut ini:</p>
+                                <p className="text-black">Kembangkan keterampilan IT dalam proyek perbankan dan pemeliharaan sistem.</p>
                             </div>
                         </button>
                     </div>
+
+                    {/* Magang Customer Service */}
+                    <div className="w-full md:w-2/3 lg:w-1/2 mt-6">
+                        <button
+                            className="w-full bg-white shadow-lg rounded-lg p-6 flex items-center hover:shadow-xl transition-shadow duration-300"
+                            onClick={() => window.location.href = '/magang/#'}>
+                            <div className="w-1/4">
+                                <Image
+                                    src="/images/magang-cs.jpg"
+                                    alt="Magang"
+                                    width={150}
+                                    height={150}
+                                    className="rounded-lg object-contain"
+                                />
+                            </div>
+                            <div className="w-3/4 pl-6 text-left">
+                                <h2 className="text-xl font-bold mb-2 text-darkBlue">Magang - Customer Service</h2>
+                                <p className="text-black">Belajar menangani transaksi perbankan, layani nasabah dengan profesional dan ramah.</p>
+                            </div>
+                        </button>
+                    </div>
+
+                    {/* Magang Teller */}
+                    <div className="w-full md:w-2/3 lg:w-1/2 mt-6">
+                        <button
+                            className="w-full bg-white shadow-lg rounded-lg p-6 flex items-center hover:shadow-xl transition-shadow duration-300"
+                            onClick={() => window.location.href = '/magang/#'}>
+                            <div className="w-1/4">
+                                <Image
+                                    src="/images/magang-teller.jpg"
+                                    alt="Magang"
+                                    width={150}
+                                    height={150}
+                                    className="rounded-lg object-contain"
+                                />
+                            </div>
+                            <div className="w-3/4 pl-6 text-left">
+                                <h2 className="text-xl font-bold mb-2 text-darkBlue">Magang - Teller</h2>
+                                <p className="text-black">Layani nasabah, tangani keluhan, dan jawab pertanyaan produk bank.</p>
+                            </div>
+                        </button>
+                    </div>
+
+                    {/* Magang Kasir */}
+                    <div className="w-full md:w-2/3 lg:w-1/2 mt-6">
+                        <button
+                            className="w-full bg-white shadow-lg rounded-lg p-6 flex items-center hover:shadow-xl transition-shadow duration-300"
+                            onClick={() => window.location.href = '/magang/#'}>
+                            <div className="w-1/4">
+                                <Image
+                                    src="/images/magang-kasir.jpg"
+                                    alt="Magang"
+                                    width={150}
+                                    height={150}
+                                    className="rounded-lg object-contain"
+                                />
+                            </div>
+                            <div className="w-3/4 pl-6 text-left">
+                                <h2 className="text-xl font-bold mb-2 text-darkBlue">Magang - Kasir</h2>
+                                <p className="text-black">Kelola uang tunai, verifikasi transaksi, dan pelaporan keuangan dengan teliti.</p>
+                            </div>
+                        </button>
+                    </div>
+                    <br/>
 
                 </div>
 
