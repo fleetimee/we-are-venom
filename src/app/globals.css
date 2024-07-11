@@ -16,6 +16,14 @@
   }
 }
 
+@font-face {
+  font-family: 'Roboto';
+  src: url('/public/fonts/OpenSans/OpenSans-Regular.ttf') format('truetype'),
+  url('//public/fonts/OpenSans/OpenSans-Bold.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
