@@ -72,3 +72,7 @@ Q.idea/sonarlint/securityhotspotstore/3/3/3393394e21dbac7686e91ad17c5283fb052d67
 Q.idea/sonarlint/securityhotspotstore/5/2/52c961376029165b06e7861b1dc68c3b2455eeff,d\0\d00bd910c269378dd6a1b73c5cd7d1e3c1490753
 F
 src/app/karir/page.tsx,b\7\b7d5c1ee14d85e2adeaf2cc3c586f69f8d9081e5
+M
+src/app/info-artikel/page.tsx,6\b\6b8753b9cf8c4afe7171c6f70cbae386aa38b28b
+G
+components/HomeIcon.tsx,1\f\1f7ade546d88fcd0f60c5bdf7ea209f10f4d2fa6
