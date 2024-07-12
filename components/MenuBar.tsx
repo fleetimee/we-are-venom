@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import HomeIcon from './HomeIcon'; // Import the HomeIcon component
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
@@ -43,8 +44,8 @@ const MenuBar = () => {
                 <ul className="flex pr-24">
                     <li className="mr-4">
                         <Link href="/" legacyBehavior>
-                            <a className={`font-semibold py-2 px-2 block custom-underline hover:font-bold ${isScrolled ? 'text-darkBlue' : 'hover:text-blue-300'}`}>
-                                Home
+                            <a className={`flex items-center font-semibold py-2 px-2 block custom-underline hover:font-bold ${isScrolled ? 'text-darkBlue' : 'hover:text-blue-300'}`}>
+                                <HomeIcon fill={isScrolled ? 'darkblue' : 'white'} />
                             </a>
                         </Link>
                     </li>
@@ -66,13 +67,6 @@ const MenuBar = () => {
                         <Link href="/info-artikel" legacyBehavior>
                             <a className={`font-semibold py-2 px-2 block custom-underline hover:font-bold ${isScrolled ? 'text-darkBlue' : 'hover:text-blue-300'}`}>
                                 Info & Artikel
-                            </a>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/sign-in" legacyBehavior>
-                            <a className={`font-semibold py-2 px-2 block custom-underline hover:font-bold ${isScrolled ? 'text-darkBlue' : 'hover:text-blue-300'}`}>
-                                Sign In
                             </a>
                         </Link>
                     </li>
