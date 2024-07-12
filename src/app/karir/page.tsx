@@ -1,25 +1,14 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import LottieAnimation from "../../../components/Animations";
-import animationFgData from '../../../public/animations/fg.json';
-import animationExperiencedData from '../../../public/animations/experienced.json';
-import animationInternshipData from '../../../public/animations/internship.json';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faFacebook, faInstagram, faYoutube} from '@fortawesome/free-brands-svg-icons';
 import Image from "next/image";
-import {Autoplay, Navigation, Pagination} from "swiper/modules";
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendar, faMapMarkerAlt, faUsers } from "@fortawesome/free-solid-svg-icons";
 import MenuBar from "../../../components/MenuBar";
 import FooterCopyright from "../../../components/FooterCopyright";
 import FooterSection from "../../../components/FooterSection";
 import ScrollToTopButton from "../../../components/ScrollToTopButton";
 import CariKarirButton from "../../../components/CariKarirButton";
-import {faCalendar, faMapMarkerAlt, faUsers} from "@fortawesome/free-solid-svg-icons";
 
 const Karir = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -30,7 +19,6 @@ const Karir = () => {
         status: "",
         area: ""
     });
-    const currentYear = new Date().getFullYear();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -105,8 +93,7 @@ const Karir = () => {
                 </div>
 
                 {/* Section List Pekerjaan */}
-                <div
-                    className="flex flex-col justify-center items-center w-full bg-white h-min-[400px] relative z-10 -mt-32">
+                <div className="flex flex-col justify-center items-center w-full bg-white h-min-[400px] relative z-10 -mt-32">
                     <h1 className="text-darkBlue font-semibold text-3xl">Peluang Kerja Terbaru</h1>
                     <br/>
                     <p
@@ -169,11 +156,8 @@ const Karir = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 w-11/12 lg:w-4/5">
-
                         {/* Job 1 */}
-                        <button
-                            className="bg-white shadow-lg rounded-lg p-6 flex items-center hover:shadow-xl transition-shadow duration-300"
-                            onClick={() => window.location.href = '/magang/#'}>
+                        <button className="bg-white shadow-lg rounded-lg p-6 flex items-center transform hover:scale-105 transition duration-500 ease-in-out" onClick={() => window.location.href = '/magang/#'}>
                             <div className="w-1/4">
                                 <Image
                                     src="/images/magang-ti.jpeg"
@@ -200,12 +184,16 @@ const Karir = () => {
                                     </div>
                                 </div>
                             </div>
+                            <div className="absolute inset-y-0 right-0 transform translate-x-full flex items-center">
+                                <div className="relative bg-blue-500 text-white px-2 py-1 text-xs font-bold transform rotate-90 origin-top-left">
+                                    <div className="absolute inset-0 bg-orange" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)' }}></div>
+                                    <span className="relative">Biz</span>
+                                </div>
+                            </div>
                         </button>
 
                         {/* Job 2 */}
-                        <button
-                            className="bg-white shadow-lg rounded-lg p-6 flex items-center hover:shadow-xl transition-shadow duration-300"
-                            onClick={() => window.location.href = '/magang/#'}>
+                        <button className="bg-white shadow-lg rounded-lg p-6 flex items-center transform hover:scale-105 transition duration-500 ease-in-out" onClick={() => window.location.href = '/magang/#'}>
                             <div className="w-1/4">
                                 <Image
                                     src="/images/magang-cs.jpg"
@@ -235,9 +223,7 @@ const Karir = () => {
                         </button>
 
                         {/* Job 3 */}
-                        <button
-                            className="bg-white shadow-lg rounded-lg p-6 flex items-center hover:shadow-xl transition-shadow duration-300"
-                            onClick={() => window.location.href = '/magang/#'}>
+                        <button className="bg-white shadow-lg rounded-lg p-6 flex items-center transform hover:scale-105 transition duration-500 ease-in-out" onClick={() => window.location.href = '/magang/#'}>
                             <div className="w-1/4">
                                 <Image
                                     src="/images/magang-teller.jpg"
@@ -267,9 +253,7 @@ const Karir = () => {
                         </button>
 
                         {/* Job 4 */}
-                        <button
-                            className="bg-white shadow-lg rounded-lg p-6 flex items-center hover:shadow-xl transition-shadow duration-300"
-                            onClick={() => window.location.href = '/magang/#'}>
+                        <button className="bg-white shadow-lg rounded-lg p-6 flex items-center transform hover:scale-105 transition duration-500 ease-in-out" onClick={() => window.location.href = '/magang/#'}>
                             <div className="w-1/4">
                                 <Image
                                     src="/images/magang-kasir.jpg"
@@ -299,9 +283,7 @@ const Karir = () => {
                         </button>
 
                         {/* Job 5 */}
-                        <button
-                            className="bg-white shadow-lg rounded-lg p-6 flex items-center hover:shadow-xl transition-shadow duration-300"
-                            onClick={() => window.location.href = '/magang/#'}>
+                        <button className="bg-white shadow-lg rounded-lg p-6 flex items-center transform hover:scale-105 transition duration-500 ease-in-out" onClick={() => window.location.href = '/magang/#'}>
                             <div className="w-1/4">
                                 <Image
                                     src="/images/magang-kasir.jpg"
@@ -331,9 +313,7 @@ const Karir = () => {
                         </button>
 
                         {/* Job 6 */}
-                        <button
-                            className="bg-white shadow-lg rounded-lg p-6 flex items-center hover:shadow-xl transition-shadow duration-300"
-                            onClick={() => window.location.href = '/magang/#'}>
+                        <button className="bg-white shadow-lg rounded-lg p-6 flex items-center transform hover:scale-105 transition duration-500 ease-in-out" onClick={() => window.location.href = '/magang/#'}>
                             <div className="w-1/4">
                                 <Image
                                     src="/images/magang-kasir.jpg"
