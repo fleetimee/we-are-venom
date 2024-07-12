@@ -76,3 +76,5 @@ M
 src/app/info-artikel/page.tsx,6\b\6b8753b9cf8c4afe7171c6f70cbae386aa38b28b
 G
 components/HomeIcon.tsx,1\f\1f7ade546d88fcd0f60c5bdf7ea209f10f4d2fa6
+K
+src/app/job-detail/page.tsx,2\c\2cf73bd32c3f3d361f84d825a8a7df84eddb266d
