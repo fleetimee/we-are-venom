@@ -78,3 +78,7 @@ G
 components/HomeIcon.tsx,1\f\1f7ade546d88fcd0f60c5bdf7ea209f10f4d2fa6
 K
 src/app/job-detail/page.tsx,2\c\2cf73bd32c3f3d361f84d825a8a7df84eddb266d
+E
+components/Layout.tsx,e\4\e40f74caa43ed7a626ec937167a07ebd91244dd6
+>
+pages/_app.tsx,5\5\550528cc072fa7d76d123e2f4303d4ab39daa8e8
