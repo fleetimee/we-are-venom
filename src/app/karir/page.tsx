@@ -119,33 +119,37 @@ const Karir = () => {
                                     <select name="position" value={filters.position} onChange={handleFilterChange} className="w-full p-2 rounded-md border border-gray-300 text-black">
                                         <option value="">Posisi</option>
                                         <option value="IT">Teknologi Informasi</option>
-                                        <option value="CS">Customer Service</option>
-                                        <option value="Teller">Teller</option>
-                                        <option value="Kasir">Kasir</option>
+                                        <option value="FO">Front Office</option>
+                                        <option value="BO">Back Office</option>
+                                        <option value="Trainee">Trainee Program</option>
                                     </select>
                                 </div>
                                 <div className="w-full md:w-1/4 px-2 mb-4 md:mb-0">
-                                    <select name="location" value={filters.location} onChange={handleFilterChange} className="w-full p-2 rounded-md border border-gray-300 text-black">
+                                    <select name="location" value={filters.location} onChange={handleFilterChange}
+                                            className="w-full p-2 rounded-md border border-gray-300 text-black">
                                         <option value="">Lokasi</option>
-                                        <option value="Jakarta">Jakarta</option>
-                                        <option value="Yogyakarta">Yogyakarta</option>
-                                        <option value="Surabaya">Surabaya</option>
+                                        <option value="Yogyakarta">Kota Yogyakarta</option>
+                                        <option value="Sleman">Sleman</option>
+                                        <option value="Bantul">Bantul</option>
+                                        <option value="Kulonprogo">Kulonprogo</option>
+                                        <option value="Gunungkidul">Gunungkidul</option>
                                     </select>
                                 </div>
                                 <div className="w-full md:w-1/4 px-2 mb-4 md:mb-0">
                                     <select name="status" value={filters.status} onChange={handleFilterChange} className="w-full p-2 rounded-md border border-gray-300 text-black">
                                         <option value="">Status</option>
                                         <option value="Full-Time">Full-Time</option>
-                                        <option value="Part-Time">Part-Time</option>
-                                        <option value="Internship">Magang</option>
+                                        <option value="Contract">Contract</option>
                                     </select>
                                 </div>
                                 <div className="w-full md:w-1/4 px-2 mb-4 md:mb-0">
-                                    <select name="area" value={filters.area} onChange={handleFilterChange} className="w-full p-2 rounded-md border border-gray-300 text-black">
+                                    <select name="area" value={filters.area} onChange={handleFilterChange}
+                                            className="w-full p-2 rounded-md border border-gray-300 text-black">
                                         <option value="">Area</option>
                                         <option value="Finance">Keuangan</option>
                                         <option value="Marketing">Pemasaran</option>
                                         <option value="Operations">Operasional</option>
+                                        <option value="Teknologi">Teknologi</option>
                                     </select>
                                 </div>
                             </div>
