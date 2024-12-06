@@ -51,6 +51,7 @@ const Magang = () => {
     return (
         <div className="min-h-screen bg-gray-100 font-sans relative">
 
+            {/* Component Menu Bar */}
             <MenuBar />
 
             <main className="pt-20 bg-gradient-to-r from-[#015CAC] to-[#018ED2] relative z-10">
