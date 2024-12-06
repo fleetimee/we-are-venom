@@ -17,7 +17,7 @@ import 'swiper/css/pagination';
 import MenuBar from "../../../components/MenuBar";
 import FooterCopyright from "../../../components/FooterCopyright";
 import FooterSection from "../../../components/FooterSection";
-import ScrollToTopButton from "../../../components/ScrollToTopButton";
+import {ScrollToTopButton} from "../../../components/ScrollToTopButton";
 import CariKarirButton from "../../../components/CariKarirButton";
 
 const Magang = () => {

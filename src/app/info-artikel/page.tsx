@@ -7,7 +7,7 @@ import { faCalendar, faTag } from "@fortawesome/free-solid-svg-icons";
 import MenuBar from "../../../components/MenuBar";
 import FooterCopyright from "../../../components/FooterCopyright";
 import FooterSection from "../../../components/FooterSection";
-import ScrollToTopButton from "../../../components/ScrollToTopButton";
+import {ScrollToTopButton} from "../../../components/ScrollToTopButton";
 import CariKarirButton from "../../../components/CariKarirButton";
 
 const InfoArtikel = () => {
@@ -102,14 +102,14 @@ const InfoArtikel = () => {
                         <button className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition duration-500 ease-in-out border-2 border-transparent hover:border-darkBlue">
                             <div className="relative w-full h-48">
                                 <Image
-                                    src="/images/artikel1.jpg"
+                                    src="/images/arcticle1.jpeg"
                                     alt="Artikel 1"
                                     layout="fill"
                                     objectFit="cover"
                                 />
                             </div>
                             <div className="p-4">
-                                <h2 className="text-xl font-bold mb-2 text-darkBlue">Judul Artikel 1</h2>
+                                <h2 className="text-xl font-bold mb-2 text-darkBlue">Direktur Kepatuhan Bank BPD DIY, Dian Ari Ani Raih Penghargaan Most Outstanding Women 2024</h2>
                                 <div className="flex items-center text-sm text-gray-600 space-x-4">
                                     <div className="flex items-center">
                                         <FontAwesomeIcon icon={faCalendar} className="mr-1"/>
@@ -127,14 +127,14 @@ const InfoArtikel = () => {
                         <button className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition duration-500 ease-in-out border-2 border-transparent hover:border-darkBlue">
                             <div className="relative w-full h-48">
                                 <Image
-                                    src="/images/artikel2.jpg"
+                                    src="/images/article2.jpg"
                                     alt="Artikel 2"
                                     layout="fill"
                                     objectFit="cover"
                                 />
                             </div>
                             <div className="p-4">
-                                <h2 className="text-xl font-bold mb-2 text-darkBlue">Judul Artikel 2</h2>
+                                <h2 className="text-xl font-bold mb-2 text-darkBlue">KINERJA CEMERLANG, BANK BPD DIY RAIH PENGHARGAAN BUMD TERBAIK 2024</h2>
                                 <div className="flex items-center text-sm text-gray-600 space-x-4">
                                     <div className="flex items-center">
                                         <FontAwesomeIcon icon={faCalendar} className="mr-1"/>

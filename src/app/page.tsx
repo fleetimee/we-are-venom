@@ -16,7 +16,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import MenuBar from "../../components/MenuBar";
 import CariKarirButton from "../../components/CariKarirButton";
-import ScrollToTopButton from "../../components/ScrollToTopButton";
+import {ScrollToTopButton} from "../../components/ScrollToTopButton";
 import FooterCopyright from "../../components/FooterCopyright";
 import FooterSection from "../../components/FooterSection";
 
@@ -51,6 +51,7 @@ const Home = () => {
     return (
         <div className="min-h-screen bg-gray-100 font-sans relative">
 
+            {/* Section MenuBar */}
             <MenuBar />
 
             <main className="pt-20 bg-gradient-to-r from-[#015CAC] to-[#018ED2] relative z-10">

@@ -82,3 +82,7 @@ E
 components/Layout.tsx,e\4\e40f74caa43ed7a626ec937167a07ebd91244dd6
 >
 pages/_app.tsx,5\5\550528cc072fa7d76d123e2f4303d4ab39daa8e8
+E
+public/searchIcon.svg,1\2\120003619f2c3e8edc40461311330e36b128b973
+K
+components/SearchButton.tsx,8\9\89db5741dcc3288f504dafd3eaecdfdc41a872ea

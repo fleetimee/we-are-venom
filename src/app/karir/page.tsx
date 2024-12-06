@@ -7,8 +7,9 @@ import { faCalendar, faMapMarkerAlt, faUsers } from "@fortawesome/free-solid-svg
 import MenuBar from "../../../components/MenuBar";
 import FooterCopyright from "../../../components/FooterCopyright";
 import FooterSection from "../../../components/FooterSection";
-import ScrollToTopButton from "../../../components/ScrollToTopButton";
+import {ScrollToTopButton} from "../../../components/ScrollToTopButton";
 import CariKarirButton from "../../../components/CariKarirButton";
+import SearchButton from "../../../components/SearchButton"; // Import the new SearchButton component
 
 const Karir = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -49,6 +50,11 @@ const Karir = () => {
             ...filters,
             [name]: value
         });
+    };
+
+    const handleSearchClick = () => {
+        // Implement the search logic here
+        console.log('Search button clicked');
     };
 
     return (
@@ -113,7 +119,7 @@ const Karir = () => {
 
                     {/* Filter Section */}
                     <div className="container mx-auto py-8 flex justify-center">
-                        <div className="w-full md:w-2/3 lg:w-1/2 bg-white shadow-lg rounded-full p-6 flex items-center">
+                        <div className="w-full md:w-2/3 lg:w-1/2 bg-white shadow-lg rounded-lg p-6 flex items-center">
                             <div className="flex flex-wrap w-full">
                                 <div className="w-full md:w-1/4 px-2 mb-4 md:mb-0">
                                     <select name="position" value={filters.position} onChange={handleFilterChange} className="w-full p-2 rounded-md border border-gray-300 text-black">
@@ -153,9 +159,7 @@ const Karir = () => {
                                     </select>
                                 </div>
                             </div>
-                            <button className="ml-4 px-6 py-2 bg-darkBlue text-white font-semibold rounded-md hover:bg-blue-400 transition duration-300">
-                                Cari
-                            </button>
+                            <SearchButton onClick={handleSearchClick} className="ml-4 bg-darkBlue text-white rounded-lg hover:bg-blue-400 transition duration-300" />
                         </div>
                     </div>
 
