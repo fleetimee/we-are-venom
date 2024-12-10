@@ -66,7 +66,7 @@ const InfoArtikel = () => {
             <MenuBar />
 
             <main className="pt-20 bg-gradient-to-r from-[#015CAC] to-[#018ED2] relative z-10">
-                <div className="container w-full mx-auto px-4 py-8 h-[450px]">
+                <div className="container w-full mx-auto px-4 py-8 h-auto">
                     <div className="flex flex-wrap">
                         <div className="w-full md:w-1/2 pl-20 flex items-center justify-center">
                             <div className="p-8 rounded-lg">
@@ -82,7 +82,7 @@ const InfoArtikel = () => {
                                     alt="Info & Artikel"
                                     width={800}
                                     height={600}
-                                    className="w-[460px] h-auto rounded-lg object-contain shadow-lg"
+                                    className="w-[460px] h-auto rounded-lg object-contain pb-10"
                                 />
                             </div>
                         </div>
@@ -105,18 +105,7 @@ const InfoArtikel = () => {
                 <div className="flex flex-col justify-center items-center w-full bg-white h-min-[400px] relative z-10 -mt-32">
                     <h1 className="text-darkBlue font-semibold text-3xl">Info & Artikel Terbaru</h1>
                     <br/>
-                    <p
-                        style={{
-                            fontFamily: 'Open Sans, sans-serif',
-                            fontSize: '1rem',
-                            fontWeight: 400,
-                            lineHeight: 1.8,
-                            color: '#222',
-                            textAlign: 'center',
-                            marginLeft: '14rem',
-                            marginRight: '14rem',
-                        }}
-                    >
+                    <p className="font-sans text-base font-normal leading-relaxed text-gray-800 text-center px-6 md:px-32 lg:px-56">
                         Berikut adalah informasi dan artikel terbaru dari Bank BPD DIY:
                     </p>
 
