@@ -13,6 +13,29 @@ import CariKarirButton from "../../../components/CariKarirButton";
 const InfoArtikel = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [showScrollToTop, setShowScrollToTop] = useState(false);
+    const [article, setArticle] = useState([]);
+
+    useEffect(() => {
+        const fetchArticle = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/api/artikel/list", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0YXRham9oMjA4QGx1eHlzcy5jb20iLCJpYXQiOjE3MzM3OTgxMzQsImV4cCI6MTczMzg4NDUzNH0.Lb-lZaOWdropPhV5Fn6ZXHcyh-D7fOht9Uhle3QEVwQrjL0micuirO-n3HCHIHcuF0RNGtdx1VkF26yjzgrGYg"
+                    },
+                });
+                const data = await response.json();
+                if (data.responseCode === "000") {
+                    setArticle(data.data);
+                }
+            } catch (error) {
+                console.error("Error fetching article data:", error);
+            }
+        };
+
+        fetchArticle();
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -98,105 +121,43 @@ const InfoArtikel = () => {
                     </p>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 w-11/12 lg:w-4/5">
-                        {/* Artikel 1 */}
-                        <button className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition duration-500 ease-in-out border-2 border-transparent hover:border-darkBlue">
-                            <div className="relative w-full h-48">
-                                <Image
-                                    src="/images/arcticle1.jpeg"
-                                    alt="Artikel 1"
-                                    layout="fill"
-                                    objectFit="cover"
-                                />
-                            </div>
-                            <div className="p-4">
-                                <h2 className="text-xl font-bold mb-2 text-darkBlue">Direktur Kepatuhan Bank BPD DIY, Dian Ari Ani Raih Penghargaan Most Outstanding Women 2024</h2>
-                                <div className="flex items-center text-sm text-gray-600 space-x-4">
-                                    <div className="flex items-center">
-                                        <FontAwesomeIcon icon={faCalendar} className="mr-1"/>
-                                        <span>12 Juni 2023</span>
-                                    </div>
-                                    <div className="flex items-center">
-                                        <FontAwesomeIcon icon={faTag} className="mr-1"/>
-                                        <span>Keuangan</span>
+                        {/* Section Article List */}
+                        {article.map((article: any) => (
+                            <button 
+                                key={article.id}
+                                className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition duration-500 ease-in-out border-2 border-transparent hover:border-darkBlue"
+                                onClick={() => window.location.href = `/info-artikel/${article.slug}`}
+                            >
+                                <div className="relative w-full h-48">
+                                    <Image
+                                        src="/images/arcticle1.jpeg"
+                                        alt={article.judul}
+                                        layout="fill"
+                                        objectFit="cover"
+                                    />
+                                </div>
+                                <div className="p-4">
+                                    <h2 className="text-xl font-bold mb-2 text-darkBlue">{article.judul}</h2>
+                                    <div className="flex items-center text-sm text-gray-600 space-x-4">
+                                        <div className="flex items-center">
+                                            <FontAwesomeIcon icon={faCalendar} className="mr-1"/>
+                                            <span>
+                                                {new Date(article.createdAt).toLocaleDateString("id-ID", {
+                                                    day: "2-digit",
+                                                    month: "2-digit",
+                                                    year: "numeric",
+                                                })}
+                                            </span>
+                                        </div>
+                                        <div className="flex items-center">
+                                            <FontAwesomeIcon icon={faTag} className="mr-1"/>
+                                            <span>Keuangan</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </button>
-
-                        {/* Artikel 2 */}
-                        <button className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition duration-500 ease-in-out border-2 border-transparent hover:border-darkBlue">
-                            <div className="relative w-full h-48">
-                                <Image
-                                    src="/images/article2.jpg"
-                                    alt="Artikel 2"
-                                    layout="fill"
-                                    objectFit="cover"
-                                />
-                            </div>
-                            <div className="p-4">
-                                <h2 className="text-xl font-bold mb-2 text-darkBlue">KINERJA CEMERLANG, BANK BPD DIY RAIH PENGHARGAAN BUMD TERBAIK 2024</h2>
-                                <div className="flex items-center text-sm text-gray-600 space-x-4">
-                                    <div className="flex items-center">
-                                        <FontAwesomeIcon icon={faCalendar} className="mr-1"/>
-                                        <span>10 Juni 2023</span>
-                                    </div>
-                                    <div className="flex items-center">
-                                        <FontAwesomeIcon icon={faTag} className="mr-1"/>
-                                        <span>Teknologi</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </button>
-
-                        {/* Artikel 3 */}
-                        <button className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition duration-500 ease-in-out border-2 border-transparent hover:border-darkBlue">
-                            <div className="relative w-full h-48">
-                                <Image
-                                    src="/images/artikel3.jpg"
-                                    alt="Artikel 3"
-                                    layout="fill"
-                                    objectFit="cover"
-                                />
-                            </div>
-                            <div className="p-4">
-                                <h2 className="text-xl font-bold mb-2 text-darkBlue">Judul Artikel 3</h2>
-                                <div className="flex items-center text-sm text-gray-600 space-x-4">
-                                    <div className="flex items-center">
-                                        <FontAwesomeIcon icon={faCalendar} className="mr-1"/>
-                                        <span>8 Juni 2023</span>
-                                    </div>
-                                    <div className="flex items-center">
-                                        <FontAwesomeIcon icon={faTag} className="mr-1"/>
-                                        <span>Pendidikan</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </button>
-
-                        {/* Artikel 4 */}
-                        <button className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition duration-500 ease-in-out border-2 border-transparent hover:border-darkBlue">
-                            <div className="relative w-full h-48">
-                                <Image
-                                    src="/images/artikel4.jpg"
-                                    alt="Artikel 4"
-                                    layout="fill"
-                                    objectFit="cover"
-                                />
-                            </div>
-                            <div className="p-4">
-                                <h2 className="text-xl font-bold mb-2 text-darkBlue">Judul Artikel 4</h2>
-                                <div className="flex items-center text-sm text-gray-600 space-x-4">
-                                    <div className="flex items-center">
-                                        <FontAwesomeIcon icon={faCalendar} className="mr-1"/>
-                                        <span>6 Juni 2023</span>
-                                    </div>
-                                    <div className="flex items-center">
-                                        <FontAwesomeIcon icon={faTag} className="mr-1"/>
-                                        <span>Bisnis</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </button>
+                            </button>
+                        ))}
+                        
                     </div>
                     <br/>
                 </div>
