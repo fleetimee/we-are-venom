@@ -55,7 +55,8 @@ const Magang = () => {
             <MenuBar />
 
             <main className="pt-20 bg-gradient-to-r from-[#015CAC] to-[#018ED2] relative z-10">
-                <div className="container w-full mx-auto px-4 py-8 h-[450px]">
+                {/* Section Slider */}    
+                <div className="container w-full mx-auto px-4 py-8 h-auto">
                     <div className="flex flex-wrap">
                         <div className="w-full md:w-1/2 pl-20 flex items-center justify-center">
                             <div className="p-8 rounded-lg">
@@ -77,6 +78,8 @@ const Magang = () => {
                         </div>
                     </div>
                 </div>
+
+                {/* Section Shape */}
                 <div className="bg-white relative z-10">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                         <defs>
@@ -91,26 +94,14 @@ const Magang = () => {
                 </div>
 
                 {/* Section Informasi Magang */}
-                <div
-                    className="flex flex-col justify-center items-center w-full bg-white h-[400px] relative z-10 -mt-56">
-                    <h1 className="text-darkBlue font-semibold text-3xl">Sekilas tentang Magang Kerja BPD DIY</h1>
-                    <br/>
-                    <p
-                        style={{
-                            fontFamily: 'Open Sans, sans-serif',
-                            fontSize: '1rem',
-                            fontWeight: 400,
-                            lineHeight: 1.8,
-                            color: '#222',
-                            textAlign: 'center',
-                            marginLeft: '14rem',
-                            marginRight: '14rem',
-                        }}
-                    >
-                        Bagi kamu lulusan SMA/SMK,diploma hingga sarjana, program ini adalah pilihan yang tepat. Melalui
-                        program ini, kamu akan mendapatkan pengalaman di bidang operasional perbankan dan ilmu lainnya
-                        yang akan mendorong kamu untuk menjadi seorang yang profesional.
-                        Jadilah bagian dari kami untuk menggapai impianmu!
+                <div className="flex flex-col justify-center items-center w-full bg-white py-8 relative z-10 -mt-56 md:py-16">
+                    <h1 className="text-darkBlue font-semibold text-2xl md:text-3xl text-center px-4">
+                        Sekilas tentang Magang Kerja BPD DIY
+                    </h1>
+                    <p className="font-sans text-base font-normal leading-relaxed text-gray-800 text-center mt-4 px-6 md:px-32">
+                        Bagi kamu lulusan SMA/SMK, diploma hingga sarjana, program ini adalah pilihan yang tepat. Melalui program ini,
+                        kamu akan mendapatkan pengalaman di bidang operasional perbankan dan ilmu lainnya yang akan mendorong kamu
+                        untuk menjadi seorang yang profesional. Jadilah bagian dari kami untuk menggapai impianmu!
                     </p>
                 </div>
 
@@ -119,18 +110,7 @@ const Magang = () => {
                     className="flex flex-col justify-center items-center w-full bg-white h-min-[400px] relative z-10">
                     <h1 className="text-darkBlue font-semibold text-3xl">Program Magang Kerja</h1>
                     <br/>
-                    <p
-                        style={{
-                            fontFamily: 'Open Sans, sans-serif',
-                            fontSize: '1rem',
-                            fontWeight: 400,
-                            lineHeight: 1.8,
-                            color: '#222',
-                            textAlign: 'center',
-                            marginLeft: '14rem',
-                            marginRight: '14rem',
-                        }}
-                    >
+                    <p className="font-sans text-base font-normal leading-relaxed text-gray-800 text-center px-6 md:px-32 lg:px-56">
                         Cek informasi lebih lanjut mengenai lowongan magang bakti yang tersedia berikut ini:
                     </p>
 

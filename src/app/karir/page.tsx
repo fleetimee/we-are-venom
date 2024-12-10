@@ -74,7 +74,7 @@ const Karir = () => {
             <MenuBar />
 
             <main className="pt-20 bg-gradient-to-r from-[#015CAC] to-[#018ED2] relative z-10">
-                <div className="container w-full mx-auto px-4 py-8 h-[450px]">
+                <div className="container w-full mx-auto px-4 py-8 h-auto">
                     <div className="flex flex-wrap">
                         <div className="w-full md:w-1/2 pl-20 flex items-center justify-center">
                             <div className="p-8 rounded-lg">
@@ -90,7 +90,7 @@ const Karir = () => {
                                 alt="Magang"
                                 width={800}
                                 height={600}
-                                className="w-[460px] h-auto rounded-lg object-contain shadow-lg"
+                                className="w-[460px] h-auto rounded-lg object-contain pb-10"
                             />
                         </div>
                     </div>
@@ -111,7 +111,7 @@ const Karir = () => {
                         Kami sedang membuka kesempatan bekerja untuk posisi berikut ini:
                     </p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 w-11/12 lg:w-4/5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 w-11/12 lg:w-4/5 pb-10">
                         {jobs.map((job: any) => (
                             <button
                                 key={job.idLowongan}
