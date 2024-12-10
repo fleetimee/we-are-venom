@@ -64,7 +64,8 @@ const Home = () => {
             <main className="pt-20 bg-gradient-to-r from-[#015CAC] to-[#018ED2] relative z-10">
                 {/* <RandomShapes /> */}
 
-                <div className="container w-full mx-auto px-4 py-8 h-[620px]">
+                {/* Section Slider/Carousel */}
+                <div className="container w-full mx-auto px-4 py-8 h-auto">
                     <Swiper
                         modules={[Navigation, Pagination, Autoplay]}
                         spaceBetween={50}
@@ -147,6 +148,8 @@ const Home = () => {
                         </SwiperSlide>
                     </Swiper>
                 </div>
+
+                {/* Section Shape */}
                 <div className="bg-white relative z-10">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                         <defs>
@@ -159,8 +162,9 @@ const Home = () => {
                     </svg>
                 </div>
 
-                <div className="flex w-full h-[200px] bg-white relative z-10">
-                    <div className="w-1/2 px-4 pb-8 bg-white text-black relative">
+                <div className="flex flex-col md:flex-row w-full h-auto bg-white relative z-10">
+                    {/* Left Section */}
+                    <div className="w-full md:w-1/2 px-4 pb-8 bg-white text-black relative">
                         <div className="absolute inset-0 z-0">
                             <svg width="100%" height="100%">
                                 <circle cx="85%" cy="45%" r="100" fill="rgba(253, 230, 138, 0.6)" />
@@ -174,89 +178,107 @@ const Home = () => {
                                 width={800}
                                 height={600}
                                 className="w-80 h-auto rounded-lg object-contain"
-                                loading='lazy'
+                                loading="lazy"
                             />
                             <Image
                                 src="/images/kantorbpd2.jpg"
                                 alt="Kantor BPD 2"
                                 width={800}
                                 height={600}
-                                className="w-auto h-40 rounded-lg object-contain absolute -top-20 right-0"
-                                loading='lazy'
+                                className="w-40 h-40 rounded-lg object-contain absolute -top-20 right-0 md:static md:mt-4"
+                                loading="lazy"
                             />
                         </div>
                     </div>
 
-                    <div className="w-1/2 px-4 pb-8 bg-white text-black">
+                    {/* Right Section */}
+                    <div className="w-full md:w-1/2 px-4 pb-8 bg-white text-black">
                         <span className="text-darkBlue font-semibold text-3xl">Tentang BPD DIY</span>
                         <br />
                         <br />
-                        <p style={{ fontFamily: 'Open Sans, sans-serif', fontSize: '1rem', fontWeight: 400, lineHeight: 1.8, color: '#222', textAlign: 'left', marginRight: '8rem' }}>
-                            BPD DIY selalu mengusahakan agar karyawan dapat bekerja sesuai dengan potensi dan kemampuan mereka serta mempelajari hal-hal baru setiap harinya. Kami percaya jika hal itu dibudayakan di dalam lingkungan BPD DIY, akan membangun semangat untuk terus berinovasi.
+                        <p className="font-sans text-base leading-relaxed text-gray-800 text-left md:pr-8">
+                            BPD DIY selalu mengusahakan agar karyawan dapat bekerja sesuai dengan potensi dan kemampuan mereka serta
+                            mempelajari hal-hal baru setiap harinya. Kami percaya jika hal itu dibudayakan di dalam lingkungan BPD DIY,
+                            akan membangun semangat untuk terus berinovasi.
                         </p>
                     </div>
                 </div>
-                <div className="flex flex-col justify-center items-center w-full bg-white h-[400px] relative z-10">
-                    <h1 className="text-darkBlue font-semibold text-3xl">Mari Berkembang Bersama Kami</h1>
-                    <br />
-                    <p style={{ fontFamily: 'Open Sans, sans-serif', fontSize: '1rem', fontWeight: 400, lineHeight: 1.8, color: '#222', textAlign: 'center', marginLeft: '14rem', marginRight: '14rem' }}>
-                        BPD DIY selalu mengusahakan agar karyawan dapat bekerja sesuai dengan potensi dan kemampuan mereka serta mempelajari hal-hal baru setiap harinya. Kami percaya jika hal itu dibudayakan di dalam lingkungan BPD DIY, akan membangun semangat untuk terus berinovasi.
+
+                {/* Section Intermezzo */}
+                <div className="flex flex-col justify-center items-center w-full bg-white h-auto py-8 relative z-10">
+                    <h1 className="text-darkBlue font-semibold text-3xl text-center px-4 md:px-0">
+                        Mari Berkembang Bersama Kami
+                    </h1>
+                    <p className="font-sans text-base font-normal leading-relaxed text-gray-800 text-center mt-4 px-6 md:px-32 lg:px-48">
+                        BPD DIY selalu mengusahakan agar karyawan dapat bekerja sesuai dengan potensi dan kemampuan mereka serta
+                        mempelajari hal-hal baru setiap harinya. Kami percaya jika hal itu dibudayakan di dalam lingkungan BPD DIY,
+                        akan membangun semangat untuk terus berinovasi.
                     </p>
                 </div>
 
                 {/* Section Fresh Graduate */}
-                <div className="flex relative z-10">
-                    <div className="w-1/2 px-4 pt-8 bg-white text-black">
-                        <span className="text-blue-400 font-semibold text-3xl ml-60">Fresh Graduate</span>
-                        <br />
-                        <br />
-                        <p style={{ fontFamily: 'Open Sans, sans-serif', fontSize: '1rem', fontWeight: 400, lineHeight: 1.8, color: '#222', textAlign: 'left', marginLeft: '15rem' }}>
+                <div className="flex flex-col md:flex-row relative z-10 bg-white">
+                    {/* Left Section */}
+                    <div className="w-full md:w-1/2 px-4 pt-8 bg-white text-black">
+                        <span className="text-blue-400 font-semibold text-3xl md:ml-60 text-center md:text-left">
+                            Fresh Graduate
+                        </span>
+                        <p className="mt-4 font-sans text-base font-normal leading-relaxed text-gray-800 text-center md:text-left md:ml-60">
                             Untuk kamu yang baru memulai karir, Fresh Graduate memiliki 2 kriteria, yaitu Program dan Staf.
                         </p>
-                        <br />
-                        <button className="font-semibold hover:underline text-darkBlue ml-60">Daftar &gt;</button>
+                        <button className="mt-6 font-semibold hover:underline text-darkBlue text-center md:text-left md:ml-60">
+                            Daftar &gt;
+                        </button>
                     </div>
-                    <div className="w-1/2 px-4 bg-white text-black flex relative z-0">
-                        <div className="-mt-32">
-                            <LottieAnimation animationData={animationFgData} width={'80%'} height={'80%'} />
+
+                    {/* Right Section */}
+                    <div className="w-full md:w-1/2 px-4 pt-8 bg-white flex justify-center md:justify-end items-center md:mr-60">
+                        <div className="w-[80%] h-auto md:w-[60%] md:h-auto md:-mt-32">
+                            <LottieAnimation animationData={animationFgData} width="100%" height="100%" />
                         </div>
                     </div>
                 </div>
 
                 {/* Section Experienced */}
-                <div className="flex relative z-10">
-                    <div className="w-1/2 bg-white text-black flex">
-                        <div className="-mt-32 ml-36">
-                            <LottieAnimation animationData={animationExperiencedData} width={'100%'} height={'100%'} />
+                <div className="flex flex-col md:flex-row relative z-10 bg-white">
+                    {/* Left Section */}
+                    <div className="w-full md:w-1/2 px-4 pt-8 bg-white flex justify-center md:justify-end items-center md:mr-60">
+                        <div className="w-[80%] h-auto md:w-[80%] md:h-auto md:-mt-32">
+                            <LottieAnimation animationData={animationExperiencedData} width="100%" height="100%" />
                         </div>
                     </div>
-                    <div className="w-1/2 px-4 py-8 bg-white text-black -mt-24">
-                        <span className="text-blue-400 font-semibold text-3xl mr-60">Experienced</span>
-                        <br />
-                        <br />
-                        <p style={{ fontFamily: 'Open Sans, sans-serif', fontSize: '1rem', fontWeight: 400, lineHeight: 1.8, color: '#222', textAlign: 'left', marginRight: '15rem' }}>
-                            Untuk kamu yang sudah memiliki pengalaman di bidang tertentu dan ingin mengembangkan diri lebih lagi.
+                    {/* Left Section */}
+                    <div className="w-full md:w-1/2 px-4 pt-8 bg-white text-black">
+                        <span className="text-blue-400 font-semibold text-3xl md:mr-60 text-center md:text-left">
+                            Experienced
+                        </span>
+                        <p className="mt-4 font-sans text-base font-normal leading-relaxed text-gray-800 text-center md:text-left md:mr-60">
+                        Untuk kamu yang sudah memiliki pengalaman di bidang tertentu dan ingin mengembangkan diri lebih lagi.
                         </p>
-                        <br />
-                        <button className="mr-36 font-semibold hover:underline text-darkBlue">Daftar &gt;</button>
+                        <button className="mt-6 font-semibold hover:underline text-darkBlue text-center md:text-left md:mr-60">
+                            Daftar &gt;
+                        </button>
                     </div>
                 </div>
 
                 {/* Section Internship */}
-                <div className="flex relative z-10">
-                    <div className="w-1/2 px-4 py-8 bg-white text-black">
-                        <span className="text-blue-400 font-semibold text-3xl ml-60">Internship</span>
-                        <br />
-                        <br />
-                        <p style={{ fontFamily: 'Open Sans, sans-serif', fontSize: '1rem', fontWeight: 400, lineHeight: 1.8, color: '#222', textAlign: 'left', marginLeft: '15rem' }}>
-                            Untuk kamu yang ingin magang di bidang tertentu dan mendapatkan pengalaman kerja sebelum lulus.
+                <div className="flex flex-col md:flex-row relative z-10 bg-white">
+                    {/* Left Section */}
+                    <div className="w-full md:w-1/2 px-4 pt-8 bg-white text-black">
+                        <span className="text-blue-400 font-semibold text-3xl md:ml-60 text-center md:text-left">
+                            Internship
+                        </span>
+                        <p className="mt-4 font-sans text-base font-normal leading-relaxed text-gray-800 text-center md:text-left md:ml-60">
+                        Untuk kamu yang ingin magang di bidang tertentu dan mendapatkan pengalaman kerja sebelum lulus.
                         </p>
-                        <br />
-                        <button className="ml-60 font-semibold hover:underline text-darkBlue">Daftar &gt;</button>
+                        <button className="mt-6 font-semibold hover:underline text-darkBlue text-center md:text-left md:ml-60">
+                            Daftar &gt;
+                        </button>
                     </div>
-                    <div className="w-1/2 px-4 bg-white text-black flex relative z-0">
-                        <div className="-mt-10 ml-6">
-                            <LottieAnimation animationData={animationInternshipData} width={'90%'} height={'90%'} />
+                    {/* Right Section */}
+                    <div className="w-full md:w-1/2 px-4 pt-8 bg-white flex justify-center md:justify-end items-center md:mr-60">
+                        <div className="w-[80%] h-auto md:w-[60%] md:h-auto md:-mt-32">
+                            <LottieAnimation animationData={animationInternshipData} width="100%" height="100%" />
                         </div>
                     </div>
                 </div>
