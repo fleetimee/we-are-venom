@@ -1,12 +1,14 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
-function MobileMenuButton({ onClick }: { onClick: () => void }) {
-    return (
-        <button className="absolute right-2 top-2 p-2" onClick={onClick}>
-            <FontAwesomeIcon className="text-4xl" icon={faBars} />
-        </button>
-    );
-}
+const MobileMenuButton = ({ onClick }: { onClick: () => void }) => (
+    <button
+        onClick={onClick}
+        className="text-darkBlue text-2xl focus:outline-none"
+        aria-label="Toggle menu"
+    >
+        <FontAwesomeIcon icon={faBars} />
+    </button>
+);
 
 export default MobileMenuButton;
