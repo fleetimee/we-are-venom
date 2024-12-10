@@ -19,6 +19,13 @@ import CariKarirButton from "../../components/CariKarirButton";
 import {ScrollToTopButton} from "../../components/ScrollToTopButton";
 import FooterCopyright from "../../components/FooterCopyright";
 import FooterSection from "../../components/FooterSection";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+  } from "@/components/ui/accordion"
+import RandomShapes from '../../components/RandomShapes';
 
 const Home = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -55,6 +62,8 @@ const Home = () => {
             <MenuBar />
 
             <main className="pt-20 bg-gradient-to-r from-[#015CAC] to-[#018ED2] relative z-10">
+                {/* <RandomShapes /> */}
+
                 <div className="container w-full mx-auto px-4 py-8 h-[620px]">
                     <Swiper
                         modules={[Navigation, Pagination, Autoplay]}
@@ -68,7 +77,7 @@ const Home = () => {
                             <div className="flex flex-wrap">
                                 <div className="w-full md:w-1/2 pl-20 flex items-center justify-center">
                                     <div className="p-8 rounded-lg">
-                                        <h1 className="text-4xl font-bold mb-4">Temukan Jalanmu untuk Berinovasi dan Mewujudkan Mimpi</h1>
+                                        <h1 className="text-4xl font-bold text-white mb-4">Temukan Jalanmu untuk Berinovasi dan Mewujudkan Mimpi</h1>
                                         <p>Jelajahi dan temukan tujuan karirmu bersama BPD DIY <b>#MungkinAndaCocok</b> kerja di BPD DIY</p>
                                         <br />
                                         <button className="px-4 py-2 bg-yellow-500 text-white font-bold rounded-lg hover:bg-yellow-400">Jelajahi Karir</button>
@@ -92,7 +101,7 @@ const Home = () => {
                             <div className="flex flex-wrap">
                                 <div className="w-full md:w-1/2 pl-20 flex items-center justify-center">
                                     <div className="p-8 rounded-lg">
-                                        <h1 className="text-4xl font-bold mb-4">Content Slide 2</h1>
+                                        <h1 className="text-4xl font-bold text-white mb-4">Content Slide 2</h1>
                                         <p>Description for Slide 2</p>
                                         <br />
                                         <button className="px-4 py-2 bg-yellow-500 text-white font-bold rounded-lg hover:bg-yellow-400">Explore</button>
@@ -107,6 +116,30 @@ const Home = () => {
                                                 </pattern>
                                             </defs>
                                             <path fill="url(#img2)" d="M40,-62.6C52.2,-54.5,62.5,-43.9,66.9,-31.4C71.3,-18.9,69.6,-4.6,65.9,8.3C62.2,21.1,56.4,32.5,49.2,45.2C42.1,57.9,33.7,72.1,22.2,75.3C10.7,78.5,-3.9,70.7,-14.8,62.1C-25.7,53.5,-32.8,44.1,-44.9,35.8C-57,27.5,-74,20.3,-82.1,7.7C-90.3,-4.8,-89.5,-22.7,-80.8,-34.8C-72,-46.9,-55.2,-53.3,-40.4,-60.2C-25.6,-67,-12.8,-74.3,0.6,-75.2C13.9,-76.1,27.9,-70.6,40,-62.6Z" transform="translate(100 100)" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <div className="flex flex-wrap">
+                                <div className="w-full md:w-1/2 pl-20 flex items-center justify-center">
+                                    <div className="p-8 rounded-lg">
+                                        <h1 className="text-4xl font-bold text-white mb-4">Temukan Jalanmu untuk Berinovasi dan Mewujudkan Mimpi</h1>
+                                        <p>Jelajahi dan temukan tujuan karirmu bersama BPD DIY <b>#MungkinAndaCocok</b> kerja di BPD DIY</p>
+                                        <br />
+                                        <button className="px-4 py-2 bg-yellow-500 text-white font-bold rounded-lg hover:bg-yellow-400">Jelajahi Karir</button>
+                                    </div>
+                                </div>
+                                <div className="w-full md:w-1/2 px-4">
+                                    <div className="rounded-lg relative z-0">
+                                        <svg className="h-full w-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                            <defs>
+                                                <pattern id="img1" x="0" y="0" width="1" height="1">
+                                                    <image x="0" y="0" width="80%" height="80%" preserveAspectRatio="xMaxYMax slice" href="https://images.pexels.com/photos/927022/pexels-photo-927022.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" />
+                                                </pattern>
+                                            </defs>
+                                            <path fill="url(#img1)" d="M40,-62.6C52.2,-54.5,62.5,-43.9,66.9,-31.4C71.3,-18.9,69.6,-4.6,65.9,8.3C62.2,21.1,56.4,32.5,49.2,45.2C42.1,57.9,33.7,72.1,22.2,75.3C10.7,78.5,-3.9,70.7,-14.8,62.1C-25.7,53.5,-32.8,44.1,-44.9,35.8C-57,27.5,-74,20.3,-82.1,7.7C-90.3,-4.8,-89.5,-22.7,-80.8,-34.8C-72,-46.9,-55.2,-53.3,-40.4,-60.2C-25.6,-67,-12.8,-74.3,0.6,-75.2C13.9,-76.1,27.9,-70.6,40,-62.6Z" transform="translate(100 100)" />
                                         </svg>
                                     </div>
                                 </div>
@@ -141,6 +174,7 @@ const Home = () => {
                                 width={800}
                                 height={600}
                                 className="w-80 h-auto rounded-lg object-contain"
+                                loading='lazy'
                             />
                             <Image
                                 src="/images/kantorbpd2.jpg"
@@ -148,6 +182,7 @@ const Home = () => {
                                 width={800}
                                 height={600}
                                 className="w-auto h-40 rounded-lg object-contain absolute -top-20 right-0"
+                                loading='lazy'
                             />
                         </div>
                     </div>
@@ -224,6 +259,83 @@ const Home = () => {
                             <LottieAnimation animationData={animationInternshipData} width={'90%'} height={'90%'} />
                         </div>
                     </div>
+                </div>
+
+                {/* Section FAQ's */}
+                <div className="flex flex-col justify-center items-center w-full bg-white h-auto relative z-10 pb-16 pt-10">
+                    <h1 className="text-darkBlue font-semibold text-3xl mt-30">Frequently Answer Question</h1>
+                    <br />
+                    {/* <p style={{ fontFamily: 'Open Sans, sans-serif', fontSize: '1rem', fontWeight: 400, lineHeight: 1.8, color: '#222', textAlign: 'center', marginLeft: '14rem', marginRight: '14rem' }}>
+                        BPD DIY selalu mengusahakan agar karyawan dapat bekerja sesuai dengan potensi dan kemampuan mereka serta mempelajari hal-hal baru setiap harinya. Kami percaya jika hal itu dibudayakan di dalam lingkungan BPD DIY, akan membangun semangat untuk terus berinovasi.
+                    </p> */}
+                    <Accordion type="single" collapsible className="w-3/4 mx-auto">
+                        <AccordionItem value="item-1">
+                            <AccordionTrigger className="w-full font-bold text-darkBlue text-xl">Apa saja posisi yang biasanya tersedia di BPD DIY?</AccordionTrigger>
+                                <AccordionContent className="w-full">
+                                Bank BPD DIY sering membuka lowongan untuk posisi seperti:
+                                <ul className="list-disc pl-6">
+                                    <li>Teller</li>
+                                    <li>Customer Service</li>
+                                    <li>Account Officer</li>
+                                    <li>Analis Kredit</li>
+                                    <li>IT Support</li>
+                                    <li>Auditor Internal</li>
+                                    <li>Staf Keuangan dan Administrasi</li>
+                                </ul>
+                                </AccordionContent>
+                        </AccordionItem>
+                        <AccordionItem value="item-2">
+                            <AccordionTrigger className="w-full font-bold text-darkBlue text-xl">Apa saja persyaratan umum untuk melamar di BPD DIY?</AccordionTrigger>
+                            <AccordionContent className="w-full">
+                            Persyaratan umum biasanya mencakup:
+                            <ul className="list-disc pl-6">
+                                <li>Warga Negara Indonesia (WNI).</li>
+                                <li>Usia maksimal 25–30 tahun (tergantung posisi).</li>
+                                <li>Pendidikan minimal D3/S1 dari jurusan yang relevan seperti Ekonomi, Manajemen, Akuntansi, atau IT.</li>
+                                <li>IPK minimal 3.00 (skala 4.00).</li>
+                                <li>Memiliki kemampuan komunikasi yang baik dan orientasi pada pelayanan.</li>
+                            </ul>
+                            </AccordionContent>
+                        </AccordionItem>
+                        <AccordionItem value="item-3">
+                            <AccordionTrigger className="w-full font-bold text-darkBlue text-xl">Bagaimana cara melamar pekerjaan di BPD DIY?</AccordionTrigger>
+                            <AccordionContent className="w-full">
+                            Anda dapat melamar pekerjaan melalui langkah berikut:
+                            <ul className="list-disc pl-6">
+                                <li>Kunjungi website resmi BPD DIY atau portal karier yang bekerja sama dengan bank.</li>
+                                <li>Pilih posisi yang sesuai dengan minat dan kualifikasi Anda.</li>
+                                <li>Unduh dan lengkapi formulir lamaran.</li>
+                                <li>Siapkan dokumen pendukung seperti CV, surat lamaran, ijazah, transkrip nilai, dan pas foto.</li>
+                                <li>Kirim lamaran melalui sistem online, email resmi, atau secara langsung ke kantor pusat BPD DIY jika diinstruksikan.</li>
+                            </ul>
+                            </AccordionContent>
+                        </AccordionItem>
+                        <AccordionItem value="item-4">
+                            <AccordionTrigger className="w-full font-bold text-darkBlue text-xl">Apa tahapan seleksi yang harus dilalui?</AccordionTrigger>
+                            <AccordionContent className="w-full">
+                            Tahapan seleksi biasanya meliputi:
+                            <ul className="list-disc pl-6">
+                                <li>Seleksi administrasi berkas lamaran.</li>
+                                <li>Seleksi psikotes dan wawancara.</li>
+                                <li>Seleksi kesehatan dan keamanan.</li>
+                                <li>Seleksi kompetensi dan keterampilan.</li>
+                                <li>Penempatan kerja dan orientasi.</li>
+                            </ul>
+                            </AccordionContent>
+                        </AccordionItem>
+                        <AccordionItem value="item-5">
+                            <AccordionTrigger className="w-full font-bold text-darkBlue text-xl">Apakah fresh graduate dapat melamar di BPD DIY?</AccordionTrigger>
+                            <AccordionContent className="w-full">
+                            Ya, BPD DIY biasanya membuka kesempatan bagi fresh graduate melalui program Officer Development Program (ODP) atau posisi entry-level lainnya. Program ini dirancang untuk melatih calon pegawai baru agar siap berkarier di dunia perbankan.
+                            </AccordionContent>
+                        </AccordionItem>
+                        <AccordionItem value="item-6">
+                            <AccordionTrigger className="w-full font-bold text-darkBlue text-xl">Apakah ada kontrak kerja setelah diterima?</AccordionTrigger>
+                            <AccordionContent className="w-full">
+                            Setelah diterima, pegawai biasanya akan menjalani masa percobaan (probation) selama 3–6 bulan. Setelah masa probation selesai, pegawai akan dikontrak atau diangkat menjadi pegawai tetap, tergantung pada penilaian kinerja selama masa percobaan.
+                            </AccordionContent>
+                        </AccordionItem>
+                    </Accordion>
                 </div>
 
                 {/* Section Footer */}
