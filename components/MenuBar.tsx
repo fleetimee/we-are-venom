@@ -1,11 +1,8 @@
-import { useState, useEffect } from 'react';
-import DesktopNavLinks from './DesktopNavLinks';
-import MobileDrawer from './MobileDrawer';
-import MobileMenuButton from './MobileMenuButton';
-import Link from 'next/link';
-import HomeIcon from './HomeIcon';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { useState, useEffect } from "react";
+import DesktopNavLinks from "./DesktopNavLinks";
+import MobileMenuButton from "./MobileMenuButton";
+import Image from "next/image";
+import Link from "next/link";
 
 const MenuBar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -15,9 +12,9 @@ const MenuBar = () => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
         };
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener("scroll", handleScroll);
         return () => {
-            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener("scroll", handleScroll);
         };
     }, []);
 
@@ -27,36 +24,86 @@ const MenuBar = () => {
 
     return (
         <header
-            className={`fixed top-0 left-0 w-full transition-all duration-300 ${isScrolled ? 'bg-white py-2 shadow-xl' : 'bg-transparent py-4'} z-50`}
+            className={`fixed top-0 left-0 w-full transition-all duration-300 ${
+                isScrolled ? "bg-white py-2 shadow-xl" : "bg-transparent py-4"
+            } z-50`}
         >
             <nav className="container mx-auto flex justify-between items-center px-4">
                 {/* Logo Section */}
-                <div className={`pl-4 sm:pl-24 ${isScrolled ? 'text-darkBlue' : 'text-white'}`} style={{ width: '200px', height: 'auto' }}>
-                    <object
-                        type="image/svg+xml"
-                        data="/bpd.svg"
-                        style={{
-                            width: '100%',
-                            height: '100%',
-                            fill: isScrolled ? 'darkBlue' : 'white',
-                            stroke: isScrolled ? 'darkBlue' : 'white',
-                        }}
-                    >
-                        Your browser does not support SVG
-                    </object>
+                <div
+                    className={`pl-4 sm:pl-24 ${isScrolled ? "text-darkBlue" : "text-white"}`}
+                    style={{ width: "300px", height: "auto" }}
+                >
+                    <Image
+                        src={isScrolled ? "/images/Logo_Color.png" : "/images/Logo_Monochrome.png"}
+                        alt="BPD Logo"
+                        width={150}
+                        height={50}
+                        priority
+                    />
                 </div>
 
                 {/* Desktop Navigation */}
-                <div className="hidden sm:flex relative py-6 flex-col justify-center">
+                <div className="hidden sm:flex relative py-6">
                     <DesktopNavLinks />
                 </div>
 
                 {/* Mobile Navigation */}
-                <div className="sm:hidden relative flex flex-row my-4">
+                <div className="hidden relative flex items-center">
                     <MobileMenuButton onClick={handleDrawerToggle} />
-                    <MobileDrawer isOpen={isDrawerOpen} onClose={handleDrawerToggle} />
                 </div>
             </nav>
+
+            {/* Mobile Drawer */}
+            {isDrawerOpen && (
+                <div className="absolute top-0 left-0 w-full h-screen bg-white z-40 flex flex-col">
+                    <div className="flex justify-between items-center px-4 py-4">
+                        <Image
+                            src="/images/Logo_Color.png"
+                            alt="BPD Logo"
+                            width={150}
+                            height={50}
+                            priority
+                        />
+                        <button
+                            onClick={handleDrawerToggle}
+                            className="text-darkBlue text-2xl focus:outline-none"
+                        >
+                            &times; {/* Close Button */}
+                        </button>
+                    </div>
+                    <ul className="flex flex-col items-center justify-center space-y-6 mt-8">
+                        <li>
+                            <Link href="/">
+                                <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
+                                    Home
+                                </a>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/about">
+                                <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
+                                    About
+                                </a>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/services">
+                                <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
+                                    Services
+                                </a>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/contact">
+                                <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
+                                    Contact
+                                </a>
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+            )}
         </header>
     );
 };
