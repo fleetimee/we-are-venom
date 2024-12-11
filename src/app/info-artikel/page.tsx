@@ -22,7 +22,7 @@ const InfoArtikel = () => {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0YXRham9oMjA4QGx1eHlzcy5jb20iLCJpYXQiOjE3MzM3OTgxMzQsImV4cCI6MTczMzg4NDUzNH0.Lb-lZaOWdropPhV5Fn6ZXHcyh-D7fOht9Uhle3QEVwQrjL0micuirO-n3HCHIHcuF0RNGtdx1VkF26yjzgrGYg"
+                        "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0YXRham9oMjA4QGx1eHlzcy5jb20iLCJpYXQiOjE3MzM4ODcwNTMsImV4cCI6MTczMzk3MzQ1M30.W3f1l_mPeL5yQy-6tiebzfHlHYd4QpyLvz1-myA25Qey8P56XhU4jcodGbsr2RrsEdIlSRd9nhxog9Sf-kPjcA"
                     },
                 });
                 const data = await response.json();
@@ -126,18 +126,13 @@ const InfoArtikel = () => {
                                     />
                                 </div>
                                 <div className="p-4">
-                                    <h2 className="text-xl font-bold mb-2 text-darkBlue">{article.judul}</h2>
+                                    <h2 className="text-xl font-bold mb-2 text-darkBlue">
+                                        {article.judul.length > 100 ? `${article.judul.substring(0, 100)}...` : article.judul}
+                                    </h2>
+                                    <p className="text-sm mb-2 text-gray-600">
+                                        {article.isi.length > 150 ? `${article.isi.substring(0, 150)}...` : article.isi}
+                                    </p>
                                     <div className="flex items-center text-sm text-gray-600 space-x-4">
-                                        <div className="flex items-center">
-                                            <FontAwesomeIcon icon={faCalendar} className="mr-1"/>
-                                            <span>
-                                                {new Date(article.createdAt).toLocaleDateString("id-ID", {
-                                                    day: "2-digit",
-                                                    month: "2-digit",
-                                                    year: "numeric",
-                                                })}
-                                            </span>
-                                        </div>
                                         <div className="flex items-center">
                                             <FontAwesomeIcon icon={faTag} className="mr-1"/>
                                             <span>Keuangan</span>
