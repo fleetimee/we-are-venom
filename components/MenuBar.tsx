@@ -84,7 +84,7 @@ const MenuBar = () => {
                             <Link href="/about">
                                 <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
                                     About
-                                </a>
+                                </a> 
                             </Link>
                         </li>
                         <li>
