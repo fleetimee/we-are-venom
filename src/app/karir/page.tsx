@@ -10,6 +10,8 @@ import FooterSection from "../../../components/FooterSection";
 import { ScrollToTopButton } from "../../../components/ScrollToTopButton";
 import CariKarirButton from "../../../components/CariKarirButton";
 import SearchButton from "../../../components/SearchButton";
+import animation404 from '../../../public/animations/404.json';
+import LottieAnimation from "../../../components/Animations";
 
 const Karir = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -30,7 +32,7 @@ const Karir = () => {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0YXRham9oMjA4QGx1eHlzcy5jb20iLCJpYXQiOjE3MzM3OTgxMzQsImV4cCI6MTczMzg4NDUzNH0.Lb-lZaOWdropPhV5Fn6ZXHcyh-D7fOht9Uhle3QEVwQrjL0micuirO-n3HCHIHcuF0RNGtdx1VkF26yjzgrGYg"
+                        "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0YXRham9oMjA4QGx1eHlzcy5jb20iLCJpYXQiOjE3MzM4ODcwNTMsImV4cCI6MTczMzk3MzQ1M30.W3f1l_mPeL5yQy-6tiebzfHlHYd4QpyLvz1-myA25Qey8P56XhU4jcodGbsr2RrsEdIlSRd9nhxog9Sf-kPjcA"
                     },
                 });
                 const data = await response.json();
@@ -76,14 +78,23 @@ const Karir = () => {
             <main className="pt-20 bg-gradient-to-r from-[#015CAC] to-[#018ED2] relative z-10">
                 <div className="container w-full mx-auto px-4 py-8 h-auto">
                     <div className="flex flex-wrap">
-                        <div className="w-full md:w-1/2 pl-20 flex items-center justify-center">
+                        {/* <div className="w-full md:w-1/2 pl-20 flex items-center justify-center text-white">
                             <div className="p-8 rounded-lg">
                                 <h1 className="text-4xl font-bold mb-4">Temukan Karir Impianmu</h1>
                                 <p>
                                     Mulai berkarir dan temukan tujuanmu bersama <br /> <b>Bank BPD DIY</b>
                                 </p>
                             </div>
+                        </div> */}
+                        <div className="w-full md:w-1/2 pl-4 md:pl-20 flex items-center justify-center text-white">
+                            <div className="p-8 rounded-lg text-center md:text-left">
+                                <h1 className="text-3xl md:text-4xl font-bold mb-4">Temukan Karir Impianmu</h1>
+                                <p>
+                                    Mulai berkarir dan temukan tujuanmu bersama <br /> <b>Bank BPD DIY</b>
+                                </p>
+                            </div>
                         </div>
+
                         <div className="w-full md:w-1/2 px-4">
                             <Image
                                 src="/images/magang.png"
@@ -106,12 +117,22 @@ const Karir = () => {
 
                 {/* Section List Pekerjaan */}
                 <div className="flex flex-col justify-center items-center w-full bg-white h-min-[400px] relative z-10 -mt-32">
-                    <h1 className="text-darkBlue font-semibold text-3xl">Peluang Kerja Terbaru</h1>
+                    <h1 className="text-darkBlue font-semibold text-3xl mt-4 md:mt-2">Peluang Kerja Terbaru</h1>
                     <p className="text-center text-gray-700 mt-4 px-6">
                         Kami sedang membuka kesempatan bekerja untuk posisi berikut ini:
                     </p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 w-11/12 lg:w-4/5 pb-10">
+                    {jobs.length === 0 ? (
+                        <div className="flex flex-col items-center mt-10">
+                            <div className="w-3/4 sm:w-3/4 lg:w-1/4">
+                                <LottieAnimation animationData={animation404} />
+                            </div>
+                            <p className="text-darkBlue font-bold text-xl sm:text-2xl mt-4 mb-20 text-center">
+                                Lowongan sedang tidak dibuka
+                            </p>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 w-11/12 lg:w-4/5 pb-10">
                         {jobs.map((job: any) => (
                             <button
                                 key={job.idLowongan}
@@ -146,13 +167,21 @@ const Karir = () => {
                             </button>
                         ))}
                     </div>
+                    )}
+                    
                 </div>
 
+                {/* Section Footer */}
                 <FooterSection />
+
+                {/* Footer Copyright */}
                 <FooterCopyright />
             </main>
 
+            {/* Scroll to Top Button */}
             <ScrollToTopButton />
+
+            {/* Search Button */}
             <CariKarirButton />
         </div>
     );
