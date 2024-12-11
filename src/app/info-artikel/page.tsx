@@ -9,6 +9,8 @@ import FooterCopyright from "../../../components/FooterCopyright";
 import FooterSection from "../../../components/FooterSection";
 import {ScrollToTopButton} from "../../../components/ScrollToTopButton";
 import CariKarirButton from "../../../components/CariKarirButton";
+import animation404 from '../../../public/animations/404.json';
+import LottieAnimation from "../../../components/Animations";
 
 const InfoArtikel = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -68,7 +70,7 @@ const InfoArtikel = () => {
             <main className="pt-20 bg-gradient-to-r from-[#015CAC] to-[#018ED2] relative z-10">
                 <div className="container w-full mx-auto px-4 py-8 h-auto">
                     <div className="flex flex-wrap">
-                        <div className="w-full md:w-1/2 pl-20 flex items-center justify-center">
+                        <div className="w-full md:w-1/2 pl-20 flex items-center justify-center text-white">
                             <div className="p-8 rounded-lg">
                                 <h1 className="text-4xl font-bold mb-4">Info & Artikel</h1>
                                 <p>Dapatkan informasi dan artikel terbaru dari <br/> <b>Bank BPD DIY</b></p>
@@ -101,48 +103,59 @@ const InfoArtikel = () => {
                     </svg>
                 </div>
 
-                {/* Section Info & Artikel */}
                 <div className="flex flex-col justify-center items-center w-full bg-white h-min-[400px] relative z-10 -mt-32">
-                    <h1 className="text-darkBlue font-semibold text-3xl">Info & Artikel Terbaru</h1>
+                    <h1 className="text-darkBlue font-semibold text-3xl mt-4 md:mt-2">Info & Artikel Terbaru</h1>
                     <br/>
                     <p className="font-sans text-base font-normal leading-relaxed text-gray-800 text-center px-6 md:px-32 lg:px-56">
                         Berikut adalah informasi dan artikel terbaru dari Bank BPD DIY:
                     </p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 w-11/12 lg:w-4/5">
-                        {/* Section Article List */}
-                        {article.map((article: any) => (
-                            <button 
-                                key={article.id}
-                                className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition duration-500 ease-in-out border-2 border-transparent hover:border-darkBlue"
-                                onClick={() => window.location.href = `/info-artikel/${article.slug}`}
-                            >
-                                <div className="relative w-full h-48">
-                                    <Image
-                                        src="/images/arcticle1.jpeg"
-                                        alt={article.judul}
-                                        layout="fill"
-                                        objectFit="cover"
-                                    />
-                                </div>
-                                <div className="p-4">
-                                    <h2 className="text-xl font-bold mb-2 text-darkBlue">
-                                        {article.judul.length > 100 ? `${article.judul.substring(0, 100)}...` : article.judul}
-                                    </h2>
-                                    <p className="text-sm mb-2 text-gray-600">
-                                        {article.isi.length > 150 ? `${article.isi.substring(0, 150)}...` : article.isi}
-                                    </p>
-                                    <div className="flex items-center text-sm text-gray-600 space-x-4">
-                                        <div className="flex items-center">
-                                            <FontAwesomeIcon icon={faTag} className="mr-1"/>
-                                            <span>Keuangan</span>
+                    {/* Section Info & Artikel */}
+                    {article.length === 0 ? (
+                        <div className="flex flex-col items-center mt-10">
+                            <div className="w-3/4 sm:w-3/4 lg:w-1/4">
+                                <LottieAnimation animationData={animation404} />
+                            </div>
+                            <p className="text-darkBlue font-bold text-xl sm:text-2xl mt-4 mb-20 text-center">
+                                Artikel tidak ditemukan
+                            </p>
+                        </div>
+                    ) : (
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 w-11/12 lg:w-4/5">
+                            {/* Section Article List */}
+                            {article.map((article: any) => (
+                                <button 
+                                    key={article.id}
+                                    className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition duration-500 ease-in-out border-2 border-transparent hover:border-darkBlue"
+                                    onClick={() => window.location.href = `/info-artikel/${article.slug}`}
+                                >
+                                    <div className="relative w-full h-48">
+                                        <Image
+                                            src="/images/arcticle1.jpeg"
+                                            alt={article.judul}
+                                            layout="fill"
+                                            objectFit="cover"
+                                        />
+                                    </div>
+                                    <div className="p-4">
+                                        <h2 className="text-xl font-bold mb-2 text-darkBlue">
+                                            {article.judul.length > 100 ? `${article.judul.substring(0, 100)}...` : article.judul}
+                                        </h2>
+                                        <p className="text-sm mb-2 text-gray-600">
+                                            {article.isi.length > 150 ? `${article.isi.substring(0, 150)}...` : article.isi}
+                                        </p>
+                                        <div className="flex items-center text-sm text-gray-600 space-x-4">
+                                            <div className="flex items-center">
+                                                <FontAwesomeIcon icon={faTag} className="mr-1"/>
+                                                <span>Keuangan</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </button>
-                        ))}
-                        
-                    </div>
+                                </button>
+                            ))} 
+                        </div>
+                        )}
                     <br/>
                 </div>
 
