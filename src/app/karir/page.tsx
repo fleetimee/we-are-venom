@@ -3,41 +3,39 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendar, faMapMarkerAlt, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faCalendar, faUsers } from "@fortawesome/free-solid-svg-icons";
 import MenuBar from "../../../components/MenuBar";
 import FooterCopyright from "../../../components/FooterCopyright";
 import FooterSection from "../../../components/FooterSection";
 import { ScrollToTopButton } from "../../../components/ScrollToTopButton";
 import CariKarirButton from "../../../components/CariKarirButton";
-import SearchButton from "../../../components/SearchButton";
-import animation404 from '../../../public/animations/404.json';
 import LottieAnimation from "../../../components/Animations";
+import animation404 from "../../../public/animations/404.json";
+
+const ITEMS_PER_PAGE = 6; // Items per page
 
 const Karir = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [showScrollToTop, setShowScrollToTop] = useState(false);
     const [jobs, setJobs] = useState([]); // State for fetched jobs
-    const [filters, setFilters] = useState({
-        position: "",
-        location: "",
-        status: "",
-        area: "",
-    });
+    const [currentPage, setCurrentPage] = useState(0); // Current page starts at 0
+    const [totalPages, setTotalPages] = useState(0); // Total pages
 
     // Fetch job data from API
     useEffect(() => {
         const fetchJobs = async () => {
             try {
-                const response = await fetch("http://localhost:8080/api/lowongan/list", {
+                const response = await fetch(`http://localhost:8080/api/lowongan/paginated?page=${currentPage}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0YXRham9oMjA4QGx1eHlzcy5jb20iLCJpYXQiOjE3MzM4ODcwNTMsImV4cCI6MTczMzk3MzQ1M30.W3f1l_mPeL5yQy-6tiebzfHlHYd4QpyLvz1-myA25Qey8P56XhU4jcodGbsr2RrsEdIlSRd9nhxog9Sf-kPjcA"
+                        Authorization: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0YXRham9oMjA4QGx1eHlzcy5jb20iLCJpYXQiOjE3MzQzMzY4MzYsImV4cCI6MTczNDQyMzIzNn0.OAEF6FwIc6qr_DMqf7PzFfCIAIXISZ_fbFgdcbGW5yOuys48wC-E2EAK63fG1bmCrJfMRJSY8nABYiLdar3Q-w",
                     },
                 });
                 const data = await response.json();
                 if (data.responseCode === "000") {
-                    setJobs(data.data);
+                    setJobs(data.data.content); // Update jobs with current page content
+                    setTotalPages(data.data.totalPages); // Set total pages
                 }
             } catch (error) {
                 console.error("Error fetching job data:", error);
@@ -45,7 +43,7 @@ const Karir = () => {
         };
 
         fetchJobs();
-    }, []);
+    }, [currentPage]); // Re-fetch jobs when currentPage changes
 
     useEffect(() => {
         const handleScroll = () => {
@@ -62,13 +60,12 @@ const Karir = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const { name, value } = e.target;
-        setFilters({ ...filters, [name]: value });
+    const goToNextPage = () => {
+        if (currentPage < totalPages - 1) setCurrentPage(currentPage + 1);
     };
 
-    const handleSearchClick = () => {
-        console.log("Search button clicked");
+    const goToPreviousPage = () => {
+        if (currentPage > 0) setCurrentPage(currentPage - 1);
     };
 
     return (
@@ -78,14 +75,6 @@ const Karir = () => {
             <main className="pt-20 bg-gradient-to-r from-[#015CAC] to-[#018ED2] relative z-10">
                 <div className="container w-full mx-auto px-4 py-8 h-auto">
                     <div className="flex flex-wrap">
-                        {/* <div className="w-full md:w-1/2 pl-20 flex items-center justify-center text-white">
-                            <div className="p-8 rounded-lg">
-                                <h1 className="text-4xl font-bold mb-4">Temukan Karir Impianmu</h1>
-                                <p>
-                                    Mulai berkarir dan temukan tujuanmu bersama <br /> <b>Bank BPD DIY</b>
-                                </p>
-                            </div>
-                        </div> */}
                         <div className="w-full md:w-1/2 pl-4 md:pl-20 flex items-center justify-center text-white">
                             <div className="p-8 rounded-lg text-center md:text-left">
                                 <h1 className="text-3xl md:text-4xl font-bold mb-4">Temukan Karir Impianmu</h1>
@@ -132,43 +121,61 @@ const Karir = () => {
                             </p>
                         </div>
                     ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 w-11/12 lg:w-4/5 pb-10">
-                        {jobs.map((job: any) => (
-                            <button
-                                key={job.idLowongan}
-                                className="bg-white shadow-lg rounded-lg p-6 flex items-center transform hover:scale-105 transition duration-500 ease-in-out"
-                                onClick={() => window.location.href = `/karir/${job.slug}`}
-                            >
-                                <div className="w-1/4">
-                                    <Image
-                                        src="/images/magang.png" // Update if dynamic images are used
-                                        alt={job.judulLowongan}
-                                        width={150}
-                                        height={150}
-                                        className="rounded-lg object-contain"
-                                    />
-                                </div>
-                                <div className="w-3/4 pl-6 text-left">
-                                    <h2 className="text-xl font-bold mb-2 text-darkBlue">{job.judulLowongan}</h2>
-                                    <p className="text-sm text-gray-600">{job.tentangPekerjaan}</p>
-                                    <div className="flex items-center text-sm text-gray-600 space-x-4 mt-2">
-                                        <div className="flex items-center">
-                                            <FontAwesomeIcon icon={faUsers} className="mr-1" />
-                                            <span>{job.posisi}</span>
+                        <>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 w-11/12 lg:w-4/5 pb-10">
+                                {jobs.map((job: any) => (
+                                    <button
+                                        key={job.idLowongan}
+                                        className="bg-white shadow-lg rounded-lg p-6 flex items-center transform hover:scale-105 transition duration-500 ease-in-out"
+                                        onClick={() => (window.location.href = `/karir/${job.slug}`)}
+                                    >
+                                        <div className="w-1/4">
+                                            <Image
+                                                src="/images/magang.png"
+                                                alt={job.judulLowongan}
+                                                width={150}
+                                                height={150}
+                                                className="rounded-lg object-contain"
+                                            />
                                         </div>
-                                        <div className="flex items-center">
-                                            <FontAwesomeIcon icon={faCalendar} className="mr-1" />
-                                            <span>
-                                                {job.periodeAwal} s/d {job.periodeAkhir}
-                                            </span>
+                                        <div className="w-3/4 pl-6 text-left">
+                                            <h2 className="text-xl font-bold mb-2 text-darkBlue">{job.judulLowongan}</h2>
+                                            <p className="text-sm text-gray-600">{job.tentangPekerjaan}</p>
+                                            <div className="flex items-center text-sm text-gray-600 space-x-4 mt-2">
+                                                <div className="flex items-center">
+                                                    <FontAwesomeIcon icon={faUsers} className="mr-1" />
+                                                    <span>{job.posisi}</span>
+                                                </div>
+                                                <div className="flex items-center">
+                                                    <FontAwesomeIcon icon={faCalendar} className="mr-1" />
+                                                    <span>
+                                                        {job.periodeAwal} s/d {job.periodeAkhir}
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </button>
-                        ))}
-                    </div>
+                                    </button>
+                                ))}
+                            </div>
+
+                            {/* Pagination Buttons */}
+                            <div className="flex justify-center mt-6 space-x-2 mb-8">
+                                {Array.from({ length: totalPages }).map((_, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => setCurrentPage(index)}
+                                        className={`w-8 h-8 flex items-center justify-center rounded-full ${
+                                            index === currentPage
+                                                ? "bg-blue-500 text-white"
+                                                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                                        }`}
+                                    >
+                                        {index + 1}
+                                    </button>
+                                ))}
+                            </div>
+                        </>
                     )}
-                    
                 </div>
 
                 {/* Section Footer */}
