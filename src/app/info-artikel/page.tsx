@@ -7,29 +7,34 @@ import { faCalendar, faTag } from "@fortawesome/free-solid-svg-icons";
 import MenuBar from "../../../components/MenuBar";
 import FooterCopyright from "../../../components/FooterCopyright";
 import FooterSection from "../../../components/FooterSection";
-import {ScrollToTopButton} from "../../../components/ScrollToTopButton";
+import { ScrollToTopButton } from "../../../components/ScrollToTopButton";
 import CariKarirButton from "../../../components/CariKarirButton";
 import animation404 from '../../../public/animations/404.json';
 import LottieAnimation from "../../../components/Animations";
 
+const ITEMS_PER_PAGE = 6; // Items per page
+
 const InfoArtikel = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [showScrollToTop, setShowScrollToTop] = useState(false);
-    const [article, setArticle] = useState([]);
+    const [articles, setArticles] = useState([]); // Articles state
+    const [currentPage, setCurrentPage] = useState(0); // Current page starts at 0
+    const [totalPages, setTotalPages] = useState(0); // Total pages
 
     useEffect(() => {
         const fetchArticle = async () => {
             try {
-                const response = await fetch("http://localhost:8080/api/artikel/list", {
+                const response = await fetch(`http://localhost:8080/api/artikel/paginated?page=${currentPage}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0YXRham9oMjA4QGx1eHlzcy5jb20iLCJpYXQiOjE3MzM4ODcwNTMsImV4cCI6MTczMzk3MzQ1M30.W3f1l_mPeL5yQy-6tiebzfHlHYd4QpyLvz1-myA25Qey8P56XhU4jcodGbsr2RrsEdIlSRd9nhxog9Sf-kPjcA"
+                        "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0YXRham9oMjA4QGx1eHlzcy5jb20iLCJpYXQiOjE3MzQzMzY4MzYsImV4cCI6MTczNDQyMzIzNn0.OAEF6FwIc6qr_DMqf7PzFfCIAIXISZ_fbFgdcbGW5yOuys48wC-E2EAK63fG1bmCrJfMRJSY8nABYiLdar3Q-w"
                     },
                 });
                 const data = await response.json();
                 if (data.responseCode === "000") {
-                    setArticle(data.data);
+                    setArticles(data.data.content); // Set the current page's articles
+                    setTotalPages(data.data.totalPages); // Set total pages
                 }
             } catch (error) {
                 console.error("Error fetching article data:", error);
@@ -37,7 +42,7 @@ const InfoArtikel = () => {
         };
 
         fetchArticle();
-    }, []);
+    }, [currentPage]); // Re-fetch articles when currentPage changes
 
     useEffect(() => {
         const handleScroll = () => {
@@ -73,8 +78,8 @@ const InfoArtikel = () => {
                         <div className="w-full md:w-1/2 pl-20 flex items-center justify-center text-white">
                             <div className="p-8 rounded-lg">
                                 <h1 className="text-4xl font-bold mb-4">Info & Artikel</h1>
-                                <p>Dapatkan informasi dan artikel terbaru dari <br/> <b>Bank BPD DIY</b></p>
-                                <br/>
+                                <p>Dapatkan informasi dan artikel terbaru dari <br /> <b>Bank BPD DIY</b></p>
+                                <br />
                             </div>
                         </div>
                         <div className="w-full md:w-1/2 px-4">
@@ -94,24 +99,24 @@ const InfoArtikel = () => {
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                         <defs>
                             <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" style={{stopColor: '#015CAC', stopOpacity: 1}}/>
-                                <stop offset="100%" style={{stopColor: '#018ED2', stopOpacity: 1}}/>
+                                <stop offset="0%" style={{ stopColor: '#015CAC', stopOpacity: 1 }} />
+                                <stop offset="100%" style={{ stopColor: '#018ED2', stopOpacity: 1 }} />
                             </linearGradient>
                         </defs>
                         <path fill="url(#grad1)"
-                              d="M0,0L120,10.7C240,21,480,43,720,48C960,53,1200,43,1320,37.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path>
+                            d="M0,0L120,10.7C240,21,480,43,720,48C960,53,1200,43,1320,37.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path>
                     </svg>
                 </div>
 
                 <div className="flex flex-col justify-center items-center w-full bg-white h-min-[400px] relative z-10 -mt-32">
                     <h1 className="text-darkBlue font-semibold text-3xl mt-4 md:mt-2">Info & Artikel Terbaru</h1>
-                    <br/>
+                    <br />
                     <p className="font-sans text-base font-normal leading-relaxed text-gray-800 text-center px-6 md:px-32 lg:px-56">
                         Berikut adalah informasi dan artikel terbaru dari Bank BPD DIY:
                     </p>
 
                     {/* Section Info & Artikel */}
-                    {article.length === 0 ? (
+                    {articles.length === 0 ? (
                         <div className="flex flex-col items-center mt-10">
                             <div className="w-3/4 sm:w-3/4 lg:w-1/4">
                                 <LottieAnimation animationData={animation404} />
@@ -121,10 +126,8 @@ const InfoArtikel = () => {
                             </p>
                         </div>
                     ) : (
-
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 w-11/12 lg:w-4/5">
-                            {/* Section Article List */}
-                            {article.map((article: any) => (
+                            {articles.map((article: any) => (
                                 <button 
                                     key={article.id}
                                     className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition duration-500 ease-in-out border-2 border-transparent hover:border-darkBlue"
@@ -147,30 +150,47 @@ const InfoArtikel = () => {
                                         </p>
                                         <div className="flex items-center text-sm text-gray-600 space-x-4">
                                             <div className="flex items-center">
-                                                <FontAwesomeIcon icon={faTag} className="mr-1"/>
+                                                <FontAwesomeIcon icon={faTag} className="mr-1" />
                                                 <span>Keuangan</span>
                                             </div>
                                         </div>
                                     </div>
                                 </button>
-                            ))} 
+                            ))}
                         </div>
-                        )}
-                    <br/>
+                    )}
+                    
+                    {/* Pagination Buttons */}
+                    <div className="flex justify-center mt-6 space-x-2 mb-8">
+                        {Array.from({ length: totalPages }).map((_, index) => (
+                            <button
+                                key={index}
+                                onClick={() => setCurrentPage(index)}
+                                className={`w-8 h-8 flex items-center justify-center rounded-full ${
+                                    index === currentPage
+                                        ? "bg-darkBlue text-white"
+                                        : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                                }`}
+                            >
+                                {index + 1}
+                            </button>
+                        ))}
+                    </div>
+                    <br />
                 </div>
 
                 {/* Section Footer */}
-                <FooterSection/>
+                <FooterSection />
 
                 {/* Section Copyright */}
-                <FooterCopyright/>
+                <FooterCopyright />
             </main>
 
             {/* Button Back to Top */}
-            <ScrollToTopButton/>
+            <ScrollToTopButton />
 
             {/* Button Find Career/Opportunity */}
-            <CariKarirButton/>
+            <CariKarirButton />
         </div>
     );
 };
