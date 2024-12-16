@@ -166,7 +166,7 @@ const Karir = () => {
                                         onClick={() => setCurrentPage(index)}
                                         className={`w-8 h-8 flex items-center justify-center rounded-full ${
                                             index === currentPage
-                                                ? "bg-blue-500 text-white"
+                                                ? "bg-darkBlue text-white"
                                                 : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                                         }`}
                                     >
