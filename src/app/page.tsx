@@ -262,26 +262,26 @@ const Home = () => {
                 </div>
 
                 {/* Section Internship */}
-                <div className="flex flex-col md:flex-row relative z-10 bg-white">
+                {/* <div className="flex flex-col md:flex-row relative z-10 bg-white"> */}
                     {/* Left Section */}
-                    <div className="w-full md:w-1/2 px-4 pt-8 bg-white text-black">
-                        <span className="text-blue-400 font-semibold text-3xl md:ml-60 text-center md:text-left">
+                    {/* <div className="w-full md:w-1/2 px-4 pt-8 bg-white text-black"> */}
+                        {/* <span className="text-blue-400 font-semibold text-3xl md:ml-60 text-center md:text-left">
                             Internship
-                        </span>
-                        <p className="mt-4 font-sans text-base font-normal leading-relaxed text-gray-800 text-center md:text-left md:ml-60">
+                        </span> */}
+                        {/* <p className="mt-4 font-sans text-base font-normal leading-relaxed text-gray-800 text-center md:text-left md:ml-60">
                         Untuk kamu yang ingin magang di bidang tertentu dan mendapatkan pengalaman kerja sebelum lulus.
-                        </p>
-                        <button className="mt-6 font-semibold hover:underline text-darkBlue text-center md:text-left md:ml-60">
+                        </p> */}
+                        {/* <button className="mt-6 font-semibold hover:underline text-darkBlue text-center md:text-left md:ml-60">
                             Daftar &gt;
-                        </button>
-                    </div>
+                        </button> */}
+                    {/* </div> */}
                     {/* Right Section */}
-                    <div className="w-full md:w-1/2 px-4 pt-8 bg-white flex justify-center md:justify-end items-center md:mr-60">
+                    {/* <div className="w-full md:w-1/2 px-4 pt-8 bg-white flex justify-center md:justify-end items-center md:mr-60">
                         <div className="w-[80%] h-auto md:w-[60%] md:h-auto md:-mt-32">
                             <LottieAnimation animationData={animationInternshipData} width="100%" height="100%" />
                         </div>
-                    </div>
-                </div>
+                    </div> */}
+                {/* </div> */}
 
                 {/* Section FAQ's */}
                 <div className="flex flex-col justify-center items-center w-full bg-white h-auto relative z-10 pb-16 pt-10">
