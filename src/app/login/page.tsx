@@ -20,9 +20,9 @@ import FooterCopyright from "../../../components/FooterCopyright";
 import { ScrollToTopButton } from "../../../components/ScrollToTopButton";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
-import DekstopNavLinksAlt from '../../../components/DekstopNavLinksAlt';
-import MobileDrawer from '../../../components/MobileDrawer';
-import MobileMenuButton from '../../../components/MobileMenuButton';
+import DekstopNavLinksAlt from "../../../components/DekstopNavLinksAlt";
+import MobileDrawer from "../../../components/MobileDrawer";
+import MobileMenuButton from "../../../components/MobileMenuButton";
 
 // Define the form schema using zod
 const formSchema = z.object({
@@ -65,7 +65,10 @@ const Login = () => {
 
       if (result.responseCode === "000") {
         // Login successful
-        localStorage.setItem("token", result.data.token);
+        const token = result.data.token;
+
+        // Store token in localStorage
+        localStorage.setItem("token", token);
 
         // Show success toast
         toast.success("Login successful! Redirecting...", {
@@ -79,7 +82,7 @@ const Login = () => {
 
         // Redirect to another page after a short delay
         setTimeout(() => {
-          window.location.href = "/karir";
+          window.location.href = "/karir"; // Redirect to the desired page
         }, 2000);
       } else {
         // Show error toast for server validation error
@@ -97,25 +100,24 @@ const Login = () => {
     <div className="min-h-screen bg-white font-sans relative">
       <nav className="container mx-auto flex justify-between items-center px-4">
         {/* Logo Section */}
-            <div
-                    className={`pl-4 sm:pl-24 text-darkBlue`}
-                    style={{ width: '300px', height: 'auto' }}
-                    >
-                    <Image
-                        src={"/images/Logo_Color.png"} // Change the logo based on scroll state
-                        alt="BPD Logo"
-                        width={200}
-                        height={0} // Auto-scale height
-                        priority
-                    />
-            </div>
+        <div
+          className={`pl-4 sm:pl-24 text-darkBlue`}
+          style={{ width: "300px", height: "auto" }}
+        >
+          <Image
+            src={"/images/Logo_Color.png"} // Change the logo based on scroll state
+            alt="BPD Logo"
+            width={200}
+            height={0} // Auto-scale height
+            priority
+          />
+        </div>
 
         {/* Desktop Navigation */}
         <div className="hidden sm:flex relative py-6 flex-col justify-center">
           <DekstopNavLinksAlt />
         </div>
       </nav>
-      
 
       <main className="flex items-center justify-center pt-20 min-h-screen">
         <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
@@ -132,11 +134,7 @@ const Login = () => {
                   <FormItem>
                     <FormLabel>Email Address</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="Enter your email"
-                        type="email"
-                        {...field}
-                      />
+                      <Input placeholder="Enter your email" type="email" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -151,11 +149,7 @@ const Login = () => {
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="Enter your password"
-                        type="password"
-                        {...field}
-                      />
+                      <Input placeholder="Enter your password" type="password" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -174,11 +168,11 @@ const Login = () => {
           </Form>
 
           <div className="text-center text-gray-700 mt-4">
-                Do not have account?{" "}
-                <a href="/register" className="text-blue-500 hover:underline">
-                Register
-                </a>
-            </div>
+            Do not have an account?{" "}
+            <a href="/register" className="text-blue-500 hover:underline">
+              Register
+            </a>
+          </div>
         </div>
       </main>
 
