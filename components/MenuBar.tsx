@@ -7,6 +7,7 @@ import Link from "next/link";
 const MenuBar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const [hasToken, setHasToken] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -16,6 +17,11 @@ const MenuBar = () => {
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
+    }, []);
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        setHasToken(!!token);
     }, []);
 
     const handleDrawerToggle = () => {
@@ -90,31 +96,44 @@ const MenuBar = () => {
                         <li>
                             <Link href="/info-artikel" legacyBehavior>
                                 <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
-                                    Riwayat
-                                </a>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/info-artikel" legacyBehavior>
-                                <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
-                                    Pengumuman
-                                </a>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/info-artikel" legacyBehavior>
-                                <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
                                     Info & Artikel
                                 </a>
                             </Link>
                         </li>
-                        <li>
-                            <Link href="/profil" legacyBehavior>
-                                <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
-                                    Profil
-                                </a>
-                            </Link>
-                        </li>
+                        {hasToken && (
+                            <>
+                                <li>
+                                    <Link href="/riwayat" legacyBehavior>
+                                        <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
+                                            Riwayat
+                                        </a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/pengumuman" legacyBehavior>
+                                        <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
+                                            Pengumuman
+                                        </a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/profil" legacyBehavior>
+                                        <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
+                                            Profil
+                                        </a>
+                                    </Link>
+                                </li>
+                            </>
+                        )}
+                        {!hasToken && (
+                            <li>
+                                <Link href="/login" legacyBehavior>
+                                    <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
+                                        Login
+                                    </a>
+                                </Link>
+                            </li>
+                        )}
                     </ul>
                 </div>
             )}
