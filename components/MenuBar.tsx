@@ -49,8 +49,8 @@ const MenuBar = () => {
                 </div>
 
                 {/* Mobile Navigation */}
-                <div className="hidden relative flex items-center">
-                    <MobileMenuButton onClick={handleDrawerToggle} />
+                <div className="sm:hidden flex items-center">
+                    <MobileMenuButton onClick={handleDrawerToggle} isScrolled={isScrolled} />
                 </div>
             </nav>
 
@@ -74,30 +74,44 @@ const MenuBar = () => {
                     </div>
                     <ul className="flex flex-col items-center justify-center space-y-6 mt-8">
                         <li>
-                            <Link href="/">
+                            <Link href="/" legacyBehavior>
                                 <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
                                     Home
                                 </a>
                             </Link>
                         </li>
                         <li>
-                            <Link href="/about">
+                            <Link href="/karir" legacyBehavior>
                                 <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
-                                    About
+                                    Karir
                                 </a> 
                             </Link>
                         </li>
                         <li>
-                            <Link href="/services">
+                            <Link href="/info-artikel" legacyBehavior>
                                 <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
-                                    Services
+                                    Riwayat
                                 </a>
                             </Link>
                         </li>
                         <li>
-                            <Link href="/contact">
+                            <Link href="/info-artikel" legacyBehavior>
                                 <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
-                                    Contact
+                                    Pengumuman
+                                </a>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/info-artikel" legacyBehavior>
+                                <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
+                                    Info & Artikel
+                                </a>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/profil" legacyBehavior>
+                                <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
+                                    Profil
                                 </a>
                             </Link>
                         </li>
