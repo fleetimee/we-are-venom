@@ -14,6 +14,7 @@ import HomeIcon from './HomeIcon';
 
 function DesktopNavLinks() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [hasToken, setHasToken] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +28,11 @@ function DesktopNavLinks() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setHasToken(!!token);
   }, []);
 
   const linkStyle = isScrolled
@@ -55,33 +61,6 @@ function DesktopNavLinks() {
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/magang" legacyBehavior passHref>
-            <NavigationMenuLink
-              className={`font-semibold py-2 px-2 custom-underline ${linkStyle}`}
-            >
-              Magang
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/riwayat" legacyBehavior passHref>
-            <NavigationMenuLink
-              className={`font-semibold py-2 px-2 custom-underline ${linkStyle}`}
-            >
-              Riwayat
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/pengumuman" legacyBehavior passHref>
-            <NavigationMenuLink
-              className={`font-semibold py-2 px-2 custom-underline ${linkStyle}`}
-            >
-              Pengumuman
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
           <Link href="/info-artikel" legacyBehavior passHref>
             <NavigationMenuLink
               className={`font-semibold py-2 px-2 custom-underline ${linkStyle}`}
@@ -90,24 +69,48 @@ function DesktopNavLinks() {
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/login" legacyBehavior passHref>
-            <NavigationMenuLink
-              className={`font-semibold py-2 px-2 custom-underline ${linkStyle}`}
-            >
-              Login
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/profil" legacyBehavior passHref>
-            <NavigationMenuLink
-              className={`font-semibold py-2 px-2 custom-underline ${linkStyle}`}
-            >
-              Profil
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
+        {hasToken && (
+          <>
+            <NavigationMenuItem>
+              <Link href="/riwayat" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={`font-semibold py-2 px-2 custom-underline ${linkStyle}`}
+                >
+                  Riwayat
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/pengumuman" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={`font-semibold py-2 px-2 custom-underline ${linkStyle}`}
+                >
+                  Pengumuman
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/profil" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={`font-semibold py-2 px-2 custom-underline ${linkStyle}`}
+                >
+                  Profil
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+          </>
+        )}
+        {!hasToken && (
+          <NavigationMenuItem>
+            <Link href="/login" legacyBehavior passHref>
+              <NavigationMenuLink
+                className={`font-semibold py-2 px-2 custom-underline ${linkStyle}`}
+              >
+                Login
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+        )}
       </NavigationMenuList>
     </NavigationMenu>
   );
