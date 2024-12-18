@@ -21,6 +21,7 @@ const Karir = () => {
     const [jobs, setJobs] = useState([]); // State for fetched jobs
     const [currentPage, setCurrentPage] = useState(0); // Current page starts at 0
     const [totalPages, setTotalPages] = useState(0); // Total pages
+    const [activeTab, setActiveTab] = useState("Rekrutmen"); // Set default tab to "Rekrutmen"
     const router = useRouter();
 
     // Check if user is authenticated when the page loads
@@ -113,6 +114,7 @@ const Karir = () => {
                         </div>
                     </div>
                 </div>
+                                
                 <div className="bg-white relative z-10">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                         <path
@@ -129,70 +131,178 @@ const Karir = () => {
                         Kami sedang membuka kesempatan bekerja untuk posisi berikut ini:
                     </p>
 
-                    {jobs.length === 0 ? (
-                        <div className="flex flex-col items-center mt-10">
-                            <div className="w-3/4 sm:w-3/4 lg:w-1/4">
-                                <LottieAnimation animationData={animation404} />
-                            </div>
-                            <p className="text-darkBlue font-bold text-xl sm:text-2xl mt-4 mb-20 text-center">
-                                Lowongan sedang tidak dibuka
-                            </p>
-                        </div>
-                    ) : (
-                        <>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 w-11/12 lg:w-4/5 pb-10">
-                                {jobs.map((job: any) => (
+                    {/* Tab Buttons */}
+                <div className="flex justify-center mb-4 mt-6">
                                     <button
-                                        key={job.idLowongan}
-                                        className="bg-white shadow-lg rounded-lg p-6 flex items-center transform hover:scale-105 transition duration-500 ease-in-out"
-                                        onClick={() => (window.location.href = `/karir/${job.slug}`)}
+                                        className={`px-4 py-2 mx-2 ${activeTab === "Rekrutmen" ? "bg-darkBlue text-white" : "bg-gray-200 text-gray-700"}`}
+                                        onClick={() => setActiveTab("Rekrutmen")}
                                     >
-                                        <div className="w-1/4">
-                                            <Image
-                                                src="/images/magang.png"
-                                                alt={job.judulLowongan}
-                                                width={150}
-                                                height={150}
-                                                className="rounded-lg object-contain"
-                                            />
-                                        </div>
-                                        <div className="w-3/4 pl-6 text-left">
-                                            <h2 className="text-xl font-bold mb-2 text-darkBlue">{job.judulLowongan}</h2>
-                                            <p className="text-sm text-gray-600">{job.tentangPekerjaan}</p>
-                                            <div className="flex items-center text-sm text-gray-600 space-x-4 mt-2">
-                                                <div className="flex items-center">
-                                                    <FontAwesomeIcon icon={faUsers} className="mr-1" />
-                                                    <span>{job.posisi}</span>
-                                                </div>
-                                                <div className="flex items-center">
-                                                    <FontAwesomeIcon icon={faCalendar} className="mr-1" />
-                                                    <span>
-                                                        {job.periodeAwal} s/d {job.periodeAkhir}
-                                                    </span>
+                                        Rekrutmen
+                                    </button>
+                                    <button
+                                        className={`px-4 py-2 mx-2 ${activeTab === "Job Desc" ? "bg-darkBlue text-white" : "bg-gray-200 text-gray-700"}`}
+                                        onClick={() => setActiveTab("Job Desc")}
+                                    >
+                                        Job Desc
+                                    </button>
+                                </div>
+
+                    {activeTab === "Rekrutmen" ? (
+                        jobs.length === 0 ? (
+                            <div className="flex flex-col items-center mt-10">
+                                <div className="w-3/4 sm:w-3/4 lg:w-1/4">
+                                    <LottieAnimation animationData={animation404} />
+                                </div>
+                                <p className="text-darkBlue font-bold text-xl sm:text-2xl mt-4 mb-20 text-center">
+                                    Lowongan sedang tidak dibuka
+                                </p>
+                            </div>
+                        ) : (
+                            <>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 w-11/12 lg:w-4/5 pb-10">
+                                    {jobs.map((job: any) => (
+                                        <button
+                                            key={job.idLowongan}
+                                            className="bg-white shadow-lg rounded-lg p-6 flex items-center transform hover:scale-105 transition duration-500 ease-in-out"
+                                            onClick={() => (window.location.href = `/karir/${job.slug}`)}
+                                        >
+                                            <div className="w-1/4">
+                                                <Image
+                                                    src="/images/magang.png"
+                                                    alt={job.judulLowongan}
+                                                    width={150}
+                                                    height={150}
+                                                    className="rounded-lg object-contain"
+                                                />
+                                            </div>
+                                            <div className="w-3/4 pl-6 text-left">
+                                                <h2 className="text-xl font-bold mb-2 text-darkBlue">{job.judulLowongan}</h2>
+                                                <p className="text-sm text-gray-600">{job.tentangPekerjaan}</p>
+                                                <div className="flex items-center text-sm text-gray-600 space-x-4 mt-2">
+                                                    <div className="flex items-center">
+                                                        <FontAwesomeIcon icon={faUsers} className="mr-1" />
+                                                        <span>{job.posisi}</span>
+                                                    </div>
+                                                    <div className="flex items-center">
+                                                        <FontAwesomeIcon icon={faCalendar} className="mr-1" />
+                                                        <span>
+                                                            {job.periodeAwal} s/d {job.periodeAkhir}
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </button>
-                                ))}
+                                        </button>
+                                    ))}
+                                </div>
+
+                                {/* Pagination Buttons */}
+                                <div className="flex justify-center mt-6 space-x-2 mb-8">
+                                    {Array.from({ length: totalPages }).map((_, index) => (
+                                        <button
+                                            key={index}
+                                            onClick={() => setCurrentPage(index)}
+                                            className={`w-8 h-8 flex items-center justify-center rounded-full ${
+                                                index === currentPage
+                                                    ? "bg-darkBlue text-white"
+                                                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                                            }`}
+                                        >
+                                            {index + 1}
+                                        </button>
+                                    ))}
+                                </div>
+                            </>
+                        )
+                    ) : (
+                        <div className="flex flex-col justify-center items-center w-full bg-white h-min-[400px] relative z-10">
+                            {/* Magang Teknologi Informasi */}
+                            <div className="w-full md:w-2/3 lg:w-1/2 mt-6">
+                                <button
+                                    className="w-full bg-white shadow-lg rounded-lg p-6 flex items-center hover:shadow-xl transition-shadow duration-300"
+                                    onClick={() => window.location.href = '/magang/#'}
+                                >
+                                    <div className="w-1/4">
+                                        <Image
+                                            src="/images/magang-ti.jpeg"
+                                            alt="Magang"
+                                            width={150}
+                                            height={150}
+                                            className="rounded-lg object-contain"
+                                        />
+                                    </div>
+                                    <div className="w-3/4 pl-6 text-left">
+                                        <h2 className="text-xl font-bold mb-2 text-darkBlue">Programmer</h2>
+                                        <p className="text-black">Kembangkan keterampilan IT dalam proyek perbankan dan pemeliharaan sistem.</p>
+                                    </div>
+                                </button>
                             </div>
 
-                            {/* Pagination Buttons */}
-                            <div className="flex justify-center mt-6 space-x-2 mb-8">
-                                {Array.from({ length: totalPages }).map((_, index) => (
-                                    <button
-                                        key={index}
-                                        onClick={() => setCurrentPage(index)}
-                                        className={`w-8 h-8 flex items-center justify-center rounded-full ${
-                                            index === currentPage
-                                                ? "bg-darkBlue text-white"
-                                                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                                        }`}
-                                    >
-                                        {index + 1}
-                                    </button>
-                                ))}
+                            {/* Magang Customer Service */}
+                            <div className="w-full md:w-2/3 lg:w-1/2 mt-6">
+                                <button
+                                    className="w-full bg-white shadow-lg rounded-lg p-6 flex items-center hover:shadow-xl transition-shadow duration-300"
+                                    onClick={() => window.location.href = '/magang/#'}
+                                >
+                                    <div className="w-1/4">
+                                        <Image
+                                            src="/images/magang-cs.jpg"
+                                            alt="Magang"
+                                            width={150}
+                                            height={150}
+                                            className="rounded-lg object-contain"
+                                        />
+                                    </div>
+                                    <div className="w-3/4 pl-6 text-left">
+                                        <h2 className="text-xl font-bold mb-2 text-darkBlue">Customer Service</h2>
+                                        <p className="text-black">Belajar menangani transaksi perbankan, layani nasabah dengan profesional dan ramah.</p>
+                                    </div>
+                                </button>
                             </div>
-                        </>
+
+                            {/* Magang Teller */}
+                            <div className="w-full md:w-2/3 lg:w-1/2 mt-6">
+                                <button
+                                    className="w-full bg-white shadow-lg rounded-lg p-6 flex items-center hover:shadow-xl transition-shadow duration-300"
+                                    onClick={() => window.location.href = '/magang/#'}
+                                >
+                                    <div className="w-1/4">
+                                        <Image
+                                            src="/images/magang-teller.jpg"
+                                            alt="Magang"
+                                            width={150}
+                                            height={150}
+                                            className="rounded-lg object-contain"
+                                        />
+                                    </div>
+                                    <div className="w-3/4 pl-6 text-left">
+                                        <h2 className="text-xl font-bold mb-2 text-darkBlue">Teller</h2>
+                                        <p className="text-black">Layani nasabah, tangani keluhan, dan jawab pertanyaan produk bank.</p>
+                                    </div>
+                                </button>
+                            </div>
+
+                            {/* Magang Kasir */}
+                            <div className="w-full md:w-2/3 lg:w-1/2 mt-6">
+                                <button
+                                    className="w-full bg-white shadow-lg rounded-lg p-6 flex items-center hover:shadow-xl transition-shadow duration-300"
+                                    onClick={() => window.location.href = '/magang/#'}
+                                >
+                                    <div className="w-1/4">
+                                        <Image
+                                            src="/images/magang-kasir.jpg"
+                                            alt="Magang"
+                                            width={150}
+                                            height={150}
+                                            className="rounded-lg object-contain"
+                                        />
+                                    </div>
+                                    <div className="w-3/4 pl-6 text-left">
+                                        <h2 className="text-xl font-bold mb-2 text-darkBlue">Kasir</h2>
+                                        <p className="text-black">Kelola uang tunai, verifikasi transaksi, dan pelaporan keuangan dengan teliti.</p>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
                     )}
                 </div>
 
