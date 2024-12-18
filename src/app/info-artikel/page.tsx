@@ -12,8 +12,6 @@ import CariKarirButton from "../../../components/CariKarirButton";
 import animation404 from '../../../public/animations/404.json';
 import LottieAnimation from "../../../components/Animations";
 
-const ITEMS_PER_PAGE = 6; // Items per page
-
 const InfoArtikel = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [showScrollToTop, setShowScrollToTop] = useState(false);
@@ -85,8 +83,8 @@ const InfoArtikel = () => {
             <main className="pt-20 bg-gradient-to-r from-[#015CAC] to-[#018ED2] relative z-10">
                 <div className="container w-full mx-auto px-4 py-8 h-auto">
                     <div className="flex flex-wrap">
-                        <div className="w-full md:w-1/2 pl-20 flex items-center justify-center text-white">
-                            <div className="p-8 rounded-lg">
+                        <div className="w-full md:w-1/2 md:pl-20 flex items-center justify-center text-white">
+                            <div className="p-8 rounded-lg text-center md:text-left">
                                 <h1 className="text-4xl font-bold mb-4">Info & Artikel</h1>
                                 <p>Dapatkan informasi dan artikel terbaru dari <br /> <b>Bank BPD DIY</b></p>
                                 <br />
