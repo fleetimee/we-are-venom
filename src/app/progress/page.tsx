@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import DekstopNavLinksAlt from '../../../components/DekstopNavLinksAlt';
 import FooterCopyright from "../../../components/FooterCopyright";
+import MenuBar from "../../../components/MenuBar";
 import { ScrollToTopButton } from "../../../components/ScrollToTopButton";
 
 const Progress = () => {
@@ -26,29 +27,10 @@ const Progress = () => {
 
   return (
     <div className="min-h-screen bg-white font-sans relative">
-      <nav className="container mx-auto flex justify-between items-center px-4">
-        {/* Logo Section */}
-        <div
-          className={`pl-4 sm:pl-24 text-darkBlue`}
-          style={{ width: "300px", height: "auto" }}
-        >
-          <Image
-            src={"/images/Logo_Color.png"}
-            alt="BPD Logo"
-            width={200}
-            height={0}
-            priority
-          />
-        </div>
+      <MenuBar />
 
-        {/* Desktop Navigation */}
-        <div className="hidden sm:flex relative py-6 flex-col justify-center">
-          <DekstopNavLinksAlt />
-        </div>
-      </nav>
-
-      <main className="flex flex-col items-center pt-20 min-h-screen">
-        <h2 className="text-2xl font-bold text-darkBlue mb-6">
+      <main className="flex flex-col items-center pt-20 min-h-screen px-4">
+        <h2 className="text-2xl font-bold text-darkBlue mb-6 text-center">
           Tahapan Rekrutmen
         </h2>
 
@@ -96,9 +78,10 @@ const Progress = () => {
               <div
                 key={step.id}
                 className="flex flex-col items-center justify-center"
+                style={{ width: `${100 / steps.length}%`, textAlign: 'center' }}
               >
                 <div
-                  className={`text-center text-sm sm:text-base ${
+                  className={`text-center text-xs sm:text-xs md:text-sm ${
                     step.id <= currentStep ? "text-green-500" : "text-gray-500"
                   }`}
                 >
