@@ -1,16 +1,8 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import LottieAnimation from "../../../components/Animations";
-import animationFgData from '../../../public/animations/fg.json';
-import animationExperiencedData from '../../../public/animations/experienced.json';
-import animationInternshipData from '../../../public/animations/internship.json';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faFacebook, faInstagram, faYoutube} from '@fortawesome/free-brands-svg-icons';
 import Image from "next/image";
-import {Autoplay, Navigation, Pagination} from "swiper/modules";
 import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -58,21 +50,22 @@ const Magang = () => {
                 {/* Section Slider */}    
                 <div className="container w-full mx-auto px-4 py-8 h-auto">
                     <div className="flex flex-wrap">
-                        <div className="w-full md:w-1/2 pl-20 flex items-center justify-center">
-                            <div className="p-8 rounded-lg">
-                                <h1 className="text-4xl font-bold mb-4">Magang Kerja</h1>
+                        <div className="w-full md:w-1/2 pl-4 md:pl-20 flex items-center justify-center">
+                            <div className="p-4 md:p-8 rounded-lg text-center md:text-left">
+                                <h1 className="text-2xl md:text-4xl font-bold mb-4">Magang Kerja</h1>
                                 <p>Mari bergabung untuk belajar dan berkembang bersama <br/> <b>Bank BPD DIY</b></p>
                                 <br/>
                             </div>
                         </div>
-                        <div className="w-full md:w-1/2 px-4">
+                        <div className="w-full md:w-1/2 px-4 flex justify-center">
                             <div className="rounded-lg relative z-0">
                                 <Image
                                     src="/images/magang.png"
                                     alt="Magang"
                                     width={800}
                                     height={600}
-                                    className="w-[460px] h-auto rounded-lg object-contain shadow-lg"
+                                    className="w-full h-auto rounded-lg object-contain shadow-lg"
+                                    style={{ maxWidth: '100%', height: 'auto' }}
                                 />
                             </div>
                         </div>
