@@ -68,18 +68,19 @@ const Home = () => {
                 <div className="container w-full mx-auto px-4 py-8 h-auto">
                     <Swiper
                         modules={[Navigation, Pagination, Autoplay]}
-                        spaceBetween={50}
+                        spaceBetween={30}
                         slidesPerView={1}
                         navigation
                         pagination={{ clickable: true }}
                         autoplay={{ delay: 5000, disableOnInteraction: false }}
+                        speed={500}
                     >
                         <SwiperSlide>
                             <div className="flex flex-wrap">
                                 <div className="w-full md:w-1/2 pl-20 flex items-center justify-center">
                                     <div className="p-8 rounded-lg">
                                         <h1 className="text-4xl font-bold text-white mb-4">Temukan Jalanmu untuk Berinovasi dan Mewujudkan Mimpi</h1>
-                                        <p>Jelajahi dan temukan tujuan karirmu bersama BPD DIY <b>#MungkinAndaCocok</b> kerja di BPD DIY</p>
+                                        <p className="text-white">Jelajahi dan temukan tujuan karirmu bersama BPD DIY <b>#MungkinAndaCocok</b> kerja di BPD DIY</p>
                                         <br />
                                         <button className="px-4 py-2 bg-yellow-500 text-white font-bold rounded-lg hover:bg-yellow-400">Jelajahi Karir</button>
                                     </div>
@@ -103,7 +104,7 @@ const Home = () => {
                                 <div className="w-full md:w-1/2 pl-20 flex items-center justify-center">
                                     <div className="p-8 rounded-lg">
                                         <h1 className="text-4xl font-bold text-white mb-4">Content Slide 2</h1>
-                                        <p>Description for Slide 2</p>
+                                        <p className="text-white">Description for Slide 2</p>
                                         <br />
                                         <button className="px-4 py-2 bg-yellow-500 text-white font-bold rounded-lg hover:bg-yellow-400">Explore</button>
                                     </div>
@@ -127,7 +128,7 @@ const Home = () => {
                                 <div className="w-full md:w-1/2 pl-20 flex items-center justify-center">
                                     <div className="p-8 rounded-lg">
                                         <h1 className="text-4xl font-bold text-white mb-4">Temukan Jalanmu untuk Berinovasi dan Mewujudkan Mimpi</h1>
-                                        <p>Jelajahi dan temukan tujuan karirmu bersama BPD DIY <b>#MungkinAndaCocok</b> kerja di BPD DIY</p>
+                                        <p className="text-white">Jelajahi dan temukan tujuan karirmu bersama BPD DIY <b>#MungkinAndaCocok</b> kerja di BPD DIY</p>
                                         <br />
                                         <button className="px-4 py-2 bg-yellow-500 text-white font-bold rounded-lg hover:bg-yellow-400">Jelajahi Karir</button>
                                     </div>
@@ -219,7 +220,7 @@ const Home = () => {
                 {/* Section Fresh Graduate */}
                 <div className="flex flex-col md:flex-row relative z-10 bg-white">
                     {/* Left Section */}
-                    <div className="w-full md:w-1/2 px-4 pt-8 bg-white text-black">
+                    <div className="w-full md:w-1/2 px-4 pt-8 bg-white text-black order-2 md:order-1 flex flex-col justify-center">
                         <span className="text-blue-400 font-semibold text-3xl md:ml-60 text-center md:text-left">
                             Fresh Graduate
                         </span>
@@ -232,8 +233,8 @@ const Home = () => {
                     </div>
 
                     {/* Right Section */}
-                    <div className="w-full md:w-1/2 px-4 pt-8 bg-white flex justify-center md:justify-end items-center md:mr-60">
-                        <div className="w-[80%] h-auto md:w-[60%] md:h-auto md:-mt-32">
+                    <div className="w-full md:w-1/2 px-4 pt-8 bg-white flex justify-center md:justify-end items-center md:mr-60 order-1 md:order-2">
+                        <div className="w-[80%] h-auto md:w-[60%] md:h-auto">
                             <LottieAnimation animationData={animationFgData} width="100%" height="100%" />
                         </div>
                     </div>
@@ -242,13 +243,13 @@ const Home = () => {
                 {/* Section Experienced */}
                 <div className="flex flex-col md:flex-row relative z-10 bg-white">
                     {/* Left Section */}
-                    <div className="w-full md:w-1/2 px-4 pt-8 bg-white flex justify-center md:justify-end items-center md:mr-60">
-                        <div className="w-[80%] h-auto md:w-[80%] md:h-auto md:-mt-32">
+                    <div className="w-full md:w-1/2 px-4 pt-8 bg-white flex justify-center md:justify-end items-center md:mr-60 order-1">
+                        <div className="w-[80%] h-auto md:w-[80%] md:h-auto">
                             <LottieAnimation animationData={animationExperiencedData} width="100%" height="100%" />
                         </div>
                     </div>
-                    {/* Left Section */}
-                    <div className="w-full md:w-1/2 px-4 pt-8 bg-white text-black">
+                    {/* Right Section */}
+                    <div className="w-full md:w-1/2 px-4 pt-8 bg-white text-black order-2 flex flex-col justify-center">
                         <span className="text-blue-400 font-semibold text-3xl md:mr-60 text-center md:text-left">
                             Experienced
                         </span>

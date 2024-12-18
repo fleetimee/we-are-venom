@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar, faUsers } from "@fortawesome/free-solid-svg-icons";
@@ -20,16 +21,33 @@ const Karir = () => {
     const [jobs, setJobs] = useState([]); // State for fetched jobs
     const [currentPage, setCurrentPage] = useState(0); // Current page starts at 0
     const [totalPages, setTotalPages] = useState(0); // Total pages
+    const router = useRouter();
+
+    // Check if user is authenticated when the page loads
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            router.push("/login");
+        }
+    }, [router]);
 
     // Fetch job data from API
     useEffect(() => {
         const fetchJobs = async () => {
+            const token = localStorage.getItem("token"); // Get token from localStorage
+
+            if (!token) {
+                console.error("No token found in localStorage");
+                return; // Exit if no token is found
+            }
+
             try {
                 const response = await fetch(`http://localhost:8080/api/lowongan/paginated?page=${currentPage}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0YXRham9oMjA4QGx1eHlzcy5jb20iLCJpYXQiOjE3MzQzMzY4MzYsImV4cCI6MTczNDQyMzIzNn0.OAEF6FwIc6qr_DMqf7PzFfCIAIXISZ_fbFgdcbGW5yOuys48wC-E2EAK63fG1bmCrJfMRJSY8nABYiLdar3Q-w",
+                        Authorization: `Bearer ${token}`, // Use the token from localStorage
                     },
                 });
                 const data = await response.json();

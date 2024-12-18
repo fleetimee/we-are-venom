@@ -23,18 +23,28 @@ const InfoArtikel = () => {
 
     useEffect(() => {
         const fetchArticle = async () => {
+            const token = localStorage.getItem("token");
+
+            if (!token) {
+                console.error("No token found in localStorage");
+                return; // Exit if no token is found
+            }
+
             try {
                 const response = await fetch(`http://localhost:8080/api/artikel/paginated?page=${currentPage}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0YXRham9oMjA4QGx1eHlzcy5jb20iLCJpYXQiOjE3MzQzMzY4MzYsImV4cCI6MTczNDQyMzIzNn0.OAEF6FwIc6qr_DMqf7PzFfCIAIXISZ_fbFgdcbGW5yOuys48wC-E2EAK63fG1bmCrJfMRJSY8nABYiLdar3Q-w"
+                        "Authorization": `Bearer ${token}`, // Use token from localStorage
                     },
                 });
+
                 const data = await response.json();
                 if (data.responseCode === "000") {
                     setArticles(data.data.content); // Set the current page's articles
                     setTotalPages(data.data.totalPages); // Set total pages
+                } else {
+                    console.error("Error fetching data:", data.message);
                 }
             } catch (error) {
                 console.error("Error fetching article data:", error);
@@ -146,7 +156,10 @@ const InfoArtikel = () => {
                                             {article.judul.length > 100 ? `${article.judul.substring(0, 100)}...` : article.judul}
                                         </h2>
                                         <p className="text-sm mb-2 text-gray-600">
-                                            {article.isi.length > 150 ? `${article.isi.substring(0, 150)}...` : article.isi}
+                                            {article.isi.length > 100 
+                                                ? <span dangerouslySetInnerHTML={{ __html: article.isi.substring(0, 150) + '...' }} />
+                                                : <span dangerouslySetInnerHTML={{ __html: article.isi }} />
+                                            }
                                         </p>
                                         <div className="flex items-center text-sm text-gray-600 space-x-4">
                                             <div className="flex items-center">
