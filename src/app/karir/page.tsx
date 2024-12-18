@@ -12,6 +12,7 @@ import { ScrollToTopButton } from "../../../components/ScrollToTopButton";
 import CariKarirButton from "../../../components/CariKarirButton";
 import LottieAnimation from "../../../components/Animations";
 import animation404 from "../../../public/animations/404.json";
+import loadingAnimation from "../../../public/animations/loading.json";
 
 const ITEMS_PER_PAGE = 6; // Items per page
 
@@ -22,6 +23,7 @@ const Karir = () => {
     const [currentPage, setCurrentPage] = useState(0); // Current page starts at 0
     const [totalPages, setTotalPages] = useState(0); // Total pages
     const [activeTab, setActiveTab] = useState("Rekrutmen"); // Set default tab to "Rekrutmen"
+    const [isLoading, setIsLoading] = useState(true); // State for loading animation
     const router = useRouter();
 
     // Check if user is authenticated when the page loads
@@ -36,6 +38,7 @@ const Karir = () => {
     // Fetch job data from API
     useEffect(() => {
         const fetchJobs = async () => {
+            setIsLoading(true); // Show loading animation
             const token = localStorage.getItem("token"); // Get token from localStorage
 
             if (!token) {
@@ -58,6 +61,8 @@ const Karir = () => {
                 }
             } catch (error) {
                 console.error("Error fetching job data:", error);
+            } finally {
+                setIsLoading(false); // Hide loading animation
             }
         };
 
@@ -114,40 +119,38 @@ const Karir = () => {
                         </div>
                     </div>
                 </div>
-                                
-                <div className="bg-white relative z-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                        <path
-                            fill="url(#grad1)"
-                            d="M0,0L120,10.7C240,21,480,43,720,48C960,53,1200,43,1320,37.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"
-                        ></path>
-                    </svg>
-                </div>
+                
+                {/* Adjusted height for blue and white areas */}
+                <div className="bg-white relative z-10 h-32"></div>
 
                 {/* Section List Pekerjaan */}
-                <div className="flex flex-col justify-center items-center w-full bg-white h-min-[400px] relative z-10 -mt-32">
+                <div className="flex flex-col justify-center items-center w-full bg-white h-min-[400px] relative z-10 -mt-32 pt-20">
                     <h1 className="text-darkBlue font-semibold text-3xl mt-4 md:mt-2">Peluang Kerja Terbaru</h1>
                     <p className="text-center text-gray-700 mt-4 px-6">
                         Kami sedang membuka kesempatan bekerja untuk posisi berikut ini:
                     </p>
 
                     {/* Tab Buttons */}
-                <div className="flex justify-center mb-4 mt-6">
-                                    <button
-                                        className={`px-4 py-2 mx-2 ${activeTab === "Rekrutmen" ? "bg-darkBlue text-white" : "bg-gray-200 text-gray-700"}`}
-                                        onClick={() => setActiveTab("Rekrutmen")}
-                                    >
-                                        Rekrutmen
-                                    </button>
-                                    <button
-                                        className={`px-4 py-2 mx-2 ${activeTab === "Job Desc" ? "bg-darkBlue text-white" : "bg-gray-200 text-gray-700"}`}
-                                        onClick={() => setActiveTab("Job Desc")}
-                                    >
-                                        Job Desc
-                                    </button>
-                                </div>
+                    <div className="flex justify-center mb-4 mt-6">
+                        <button
+                            className={`px-4 py-2 mx-2 transition-all duration-300 rounded-lg ${activeTab === "Rekrutmen" ? "bg-darkBlue text-white" : "bg-gray-200 text-gray-700 hover:bg-gray-300"}`}
+                            onClick={() => setActiveTab("Rekrutmen")}
+                        >
+                            Rekrutmen
+                        </button>
+                        <button
+                            className={`px-4 py-2 mx-2 transition-all duration-300 rounded-lg ${activeTab === "Job Desc" ? "bg-darkBlue text-white" : "bg-gray-200 text-gray-700 hover:bg-gray-300"}`}
+                            onClick={() => setActiveTab("Job Desc")}
+                        >
+                            Job Desc
+                        </button>
+                    </div>
 
-                    {activeTab === "Rekrutmen" ? (
+                    {isLoading ? (
+                        <div className="flex justify-center items-center mt-10">
+                            <LottieAnimation animationData={loadingAnimation} />
+                        </div>
+                    ) : activeTab === "Rekrutmen" ? (
                         jobs.length === 0 ? (
                             <div className="flex flex-col items-center mt-10">
                                 <div className="w-3/4 sm:w-3/4 lg:w-1/4">
@@ -214,11 +217,11 @@ const Karir = () => {
                             </>
                         )
                     ) : (
-                        <div className="flex flex-col justify-center items-center w-full bg-white h-min-[400px] relative z-10">
+                        <div className="flex flex-col justify-center items-center w-full bg-white h-min-[400px] relative z-10 pb-10">
                             {/* Magang Teknologi Informasi */}
-                            <div className="w-full md:w-2/3 lg:w-1/2 mt-6">
+                            <div className="w-full md:w-2/3 lg:w-1/2 mt-6 px-4">
                                 <button
-                                    className="w-full bg-white shadow-lg rounded-lg p-6 flex items-center hover:shadow-xl transition-shadow duration-300"
+                                    className="w-full bg-white shadow-lg rounded-lg p-6 flex items-center hover:shadow-xl transition-shadow duration-300 transform hover:scale-105"
                                     onClick={() => window.location.href = '/magang/#'}
                                 >
                                     <div className="w-1/4">
@@ -238,9 +241,9 @@ const Karir = () => {
                             </div>
 
                             {/* Magang Customer Service */}
-                            <div className="w-full md:w-2/3 lg:w-1/2 mt-6">
+                            <div className="w-full md:w-2/3 lg:w-1/2 mt-6 px-4">
                                 <button
-                                    className="w-full bg-white shadow-lg rounded-lg p-6 flex items-center hover:shadow-xl transition-shadow duration-300"
+                                    className="w-full bg-white shadow-lg rounded-lg p-6 flex items-center hover:shadow-xl transition-shadow duration-300 transform hover:scale-105"
                                     onClick={() => window.location.href = '/magang/#'}
                                 >
                                     <div className="w-1/4">
@@ -260,9 +263,9 @@ const Karir = () => {
                             </div>
 
                             {/* Magang Teller */}
-                            <div className="w-full md:w-2/3 lg:w-1/2 mt-6">
+                            <div className="w-full md:w-2/3 lg:w-1/2 mt-6 px-4">
                                 <button
-                                    className="w-full bg-white shadow-lg rounded-lg p-6 flex items-center hover:shadow-xl transition-shadow duration-300"
+                                    className="w-full bg-white shadow-lg rounded-lg p-6 flex items-center hover:shadow-xl transition-shadow duration-300 transform hover:scale-105"
                                     onClick={() => window.location.href = '/magang/#'}
                                 >
                                     <div className="w-1/4">
@@ -282,9 +285,9 @@ const Karir = () => {
                             </div>
 
                             {/* Magang Kasir */}
-                            <div className="w-full md:w-2/3 lg:w-1/2 mt-6">
+                            <div className="w-full md:w-2/3 lg:w-1/2 mt-6 px-4">
                                 <button
-                                    className="w-full bg-white shadow-lg rounded-lg p-6 flex items-center hover:shadow-xl transition-shadow duration-300"
+                                    className="w-full bg-white shadow-lg rounded-lg p-6 flex items-center hover:shadow-xl transition-shadow duration-300 transform hover:scale-105"
                                     onClick={() => window.location.href = '/magang/#'}
                                 >
                                     <div className="w-1/4">
