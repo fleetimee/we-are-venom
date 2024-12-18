@@ -134,7 +134,12 @@ const Login = () => {
                   <FormItem>
                     <FormLabel>Email Address</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter your email" type="email" {...field} />
+                      <Input
+                        placeholder="Enter your email"
+                        type="email"
+                        {...field}
+                        className="transition-transform duration-300 focus:scale-105"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -149,7 +154,12 @@ const Login = () => {
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter your password" type="password" {...field} />
+                      <Input
+                        placeholder="Enter your password"
+                        type="password"
+                        {...field}
+                        className="transition-transform duration-300 focus:scale-105"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -159,7 +169,7 @@ const Login = () => {
               {/* Submit Button */}
               <Button
                 type="submit"
-                className="w-full bg-darkBlue text-white font-semibold py-2 rounded-md hover:bg-blue-700 transition"
+                className="w-full bg-darkBlue text-white font-semibold py-2 rounded-md hover:bg-blue-700 transition-transform duration-300 hover:scale-105"
                 disabled={loading}
               >
                 {loading ? "Logging in..." : "Login"}
