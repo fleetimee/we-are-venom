@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
-import '../styles/globals.css';  // Import global CSS if needed
+// import '../styles/globals.css';  // Import global CSS if needed
 
 // Create a simple loading spinner component
 const LoadingSpinner = () => (
