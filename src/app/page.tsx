@@ -194,7 +194,7 @@ const Home = () => {
 
                     {/* Right Section */}
                     <div className="w-full md:w-1/2 px-4 pb-8 bg-white text-black">
-                        <span className="text-darkBlue font-semibold text-3xl">Tentang BPD DIY</span>
+                        <span className="text-darkBlue font-semibold text-3xl text-center md:text-left">Tentang BPD DIY</span>
                         <br />
                         <br />
                         <p className="font-sans text-base leading-relaxed text-gray-800 text-left md:pr-8">
@@ -286,7 +286,7 @@ const Home = () => {
 
                 {/* Section FAQ's */}
                 <div className="flex flex-col justify-center items-center w-full bg-white h-auto relative z-10 pb-16 pt-10">
-                    <h1 className="text-darkBlue font-semibold text-3xl mt-30">Frequently Answer Question</h1>
+                    <h1 className="text-darkBlue font-semibold text-3xl mt-30 text-center">Frequently Answer Question</h1>
                     <br />
                     {/* <p style={{ fontFamily: 'Open Sans, sans-serif', fontSize: '1rem', fontWeight: 400, lineHeight: 1.8, color: '#222', textAlign: 'center', marginLeft: '14rem', marginRight: '14rem' }}>
                         BPD DIY selalu mengusahakan agar karyawan dapat bekerja sesuai dengan potensi dan kemampuan mereka serta mempelajari hal-hal baru setiap harinya. Kami percaya jika hal itu dibudayakan di dalam lingkungan BPD DIY, akan membangun semangat untuk terus berinovasi.
