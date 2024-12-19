@@ -10,6 +10,7 @@ import FooterSection from "../../../components/FooterSection";
 import { ScrollToTopButton } from "../../../components/ScrollToTopButton";
 import CariKarirButton from "../../../components/CariKarirButton";
 import animation404 from '../../../public/animations/404.json';
+import loadingAnimation from '../../../public/animations/loading.json';
 import LottieAnimation from "../../../components/Animations";
 
 const InfoArtikel = () => {
@@ -18,9 +19,11 @@ const InfoArtikel = () => {
     const [articles, setArticles] = useState([]); // Articles state
     const [currentPage, setCurrentPage] = useState(0); // Current page starts at 0
     const [totalPages, setTotalPages] = useState(0); // Total pages
+    const [isLoading, setIsLoading] = useState(true); // State for loading animation
 
     useEffect(() => {
         const fetchArticle = async () => {
+            setIsLoading(true); // Show loading animation
             const token = localStorage.getItem("token");
 
             if (!token) {
@@ -46,6 +49,8 @@ const InfoArtikel = () => {
                 }
             } catch (error) {
                 console.error("Error fetching article data:", error);
+            } finally {
+                setIsLoading(false); // Hide loading animation
             }
         };
 
@@ -77,11 +82,9 @@ const InfoArtikel = () => {
 
     return (
         <div className="min-h-screen bg-gray-100 font-sans relative">
-
             <MenuBar />
-
-            <main className="pt-20 bg-gradient-to-r from-[#015CAC] to-[#018ED2] relative z-10">
-                <div className="container w-full mx-auto px-4 py-8 h-auto">
+            <main className="pt-28 bg-gradient-to-r from-[#015CAC] to-[#018ED2] relative z-10">
+                {/* <div className="container w-full mx-auto px-4 py-8 h-auto">
                     <div className="flex flex-wrap">
                         <div className="w-full md:w-1/2 md:pl-20 flex items-center justify-center text-white">
                             <div className="p-8 rounded-lg text-center md:text-left">
@@ -102,7 +105,7 @@ const InfoArtikel = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className="bg-white relative z-10">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                         <defs>
@@ -123,8 +126,11 @@ const InfoArtikel = () => {
                         Berikut adalah informasi dan artikel terbaru dari Bank BPD DIY:
                     </p>
 
-                    {/* Section Info & Artikel */}
-                    {articles.length === 0 ? (
+                    {isLoading ? (
+                        <div className="flex justify-center items-center mt-10">
+                            <LottieAnimation animationData={loadingAnimation} />
+                        </div>
+                    ) : articles.length === 0 ? (
                         <div className="flex flex-col items-center mt-10">
                             <div className="w-3/4 sm:w-3/4 lg:w-1/4">
                                 <LottieAnimation animationData={animation404} />
