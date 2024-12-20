@@ -69,7 +69,7 @@ function DesktopNavLinks() {
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-        {hasToken && (
+        {hasToken ? (
           <>
             <NavigationMenuItem>
               <Link href="/riwayat" legacyBehavior passHref>
@@ -99,8 +99,7 @@ function DesktopNavLinks() {
               </Link>
             </NavigationMenuItem>
           </>
-        )}
-        {!hasToken && (
+        ) : (
           <NavigationMenuItem>
             <Link href="/login" legacyBehavior passHref>
               <NavigationMenuLink
