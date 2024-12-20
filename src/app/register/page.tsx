@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MenuBar from "../../../components/MenuBar";
 import FooterSection from "../../../components/FooterSection";
 import FooterCopyright from "../../../components/FooterCopyright";
@@ -22,6 +22,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import DekstopNavLinksAlt from '../../../components/DekstopNavLinksAlt';
 import Image from "next/image";
+import MobileDrawer from "../../../components/MobileDrawer";
+import MobileMenuButton from "../../../components/MobileMenuButton";
 
 // Define the form schema using zod
 const formSchema = z.object({
@@ -35,6 +37,26 @@ type RegisterFormValues = z.infer<typeof formSchema>;
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
+
+  // Add a state to manage the scroll state
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Function to handle scroll event
+  const handleScroll = () => {
+    if (window.scrollY > 50) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
+
+  // Add event listener for scroll
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const form = useForm<RegisterFormValues>({
     resolver: zodResolver(formSchema),
@@ -99,26 +121,31 @@ const Register = () => {
     <div className="min-h-screen bg-white font-sans relative">
       <nav className="container mx-auto flex justify-between items-center px-4">
         {/* Logo Section */}
-            <div
-                    className={`pl-4 sm:pl-24 text-darkBlue`}
-                    style={{ width: '300px', height: 'auto' }}
-                    >
-                    <Image
-                        src={"/images/Logo_Color.png"} // Change the logo based on scroll state
-                        alt="BPD Logo"
-                        width={200}
-                        height={0} // Auto-scale height
-                        priority
-                    />
-            </div>
+        <div
+          className={`pl-4 sm:pl-24 text-darkBlue`}
+          style={{ width: '300px', height: 'auto' }}
+        >
+          <Image
+            src={"/images/Logo_Color.png"} // Change the logo based on scroll state
+            alt="BPD Logo"
+            width={200}
+            height={0} // Auto-scale height
+            priority
+          />
+        </div>
 
         {/* Desktop Navigation */}
         <div className="hidden sm:flex relative py-6 flex-col justify-center">
           <DekstopNavLinksAlt />
         </div>
+
+        {/* Mobile Menu Button */}
+        <div className="sm:hidden">
+          <MobileMenuButton onClick={() => { /* handle click */ }} isScrolled={isScrolled} />
+        </div>
       </nav>
 
-      <main className="flex items-center justify-center pt-20 min-h-screen">
+      <main className="flex items-center justify-center pt-10 sm:pt-20 min-h-screen px-4">
         <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
           <h2 className="text-2xl font-bold text-center text-darkBlue mb-6">
             Daftar Akun Baru
@@ -137,6 +164,7 @@ const Register = () => {
                         placeholder="Enter your username"
                         type="username"
                         {...field}
+                        className="transition-transform duration-300 focus:scale-105"
                       />
                     </FormControl>
                     <FormMessage />
@@ -156,6 +184,7 @@ const Register = () => {
                         placeholder="Enter your No Identitas"
                         type="number"
                         {...field}
+                        className="transition-transform duration-300 focus:scale-105"
                       />
                     </FormControl>
                     <FormMessage />
@@ -175,6 +204,7 @@ const Register = () => {
                         placeholder="Enter your email"
                         type="email"
                         {...field}
+                        className="transition-transform duration-300 focus:scale-105"
                       />
                     </FormControl>
                     <FormMessage />
@@ -194,6 +224,7 @@ const Register = () => {
                         placeholder="Enter your password"
                         type="password"
                         {...field}
+                        className="transition-transform duration-300 focus:scale-105"
                       />
                     </FormControl>
                     <FormMessage />
@@ -204,7 +235,7 @@ const Register = () => {
               {/* Submit Button */}
               <Button
                 type="submit"
-                className="w-full bg-darkBlue text-white font-semibold py-2 rounded-md hover:bg-blue-700 transition"
+                className="w-full bg-darkBlue text-white font-semibold py-2 rounded-md hover:bg-blue-700 transition-transform duration-300 hover:scale-105"
                 disabled={loading}
               >
                 {loading ? "Register in progress..." : "Register"}
@@ -212,12 +243,12 @@ const Register = () => {
             </form>
           </Form>
 
-            <div className="text-center text-gray-700 mt-4">
-                Already have an account?{" "}
-                <a href="/login" className="text-blue-500 hover:underline">
-                Login
-                </a>
-            </div>
+          <div className="text-center text-gray-700 mt-4">
+            Already have an account?{" "}
+            <a href="/login" className="text-blue-500 hover:underline">
+              Login
+            </a>
+          </div>
         </div>
       </main>
 
