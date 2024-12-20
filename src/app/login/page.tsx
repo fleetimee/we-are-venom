@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -34,6 +34,26 @@ type LoginFormValues = z.infer<typeof formSchema>;
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
+
+  // Add a state to manage the scroll state
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Function to handle scroll event
+  const handleScroll = () => {
+    if (window.scrollY > 50) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
+
+  // Add event listener for scroll
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   // Initialize the form with react-hook-form and zod resolver
   const form = useForm<LoginFormValues>({
@@ -117,9 +137,14 @@ const Login = () => {
         <div className="hidden sm:flex relative py-6 flex-col justify-center">
           <DekstopNavLinksAlt />
         </div>
+
+        {/* Mobile Menu Button */}
+        <div className="sm:hidden">
+          <MobileMenuButton onClick={() => { /* handle click */ }} isScrolled={isScrolled} />
+        </div>
       </nav>
 
-      <main className="flex items-center justify-center pt-20 min-h-screen">
+      <main className="flex items-center justify-center pt-10 sm:pt-20 min-h-screen px-4">
         <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
           <h2 className="text-2xl font-bold text-center text-darkBlue mb-6">
             Login to Your Account
