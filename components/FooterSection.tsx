@@ -8,7 +8,7 @@ const FooterSection = () => {
     return (
         <div className="bg-white pt-14 px-6 md:px-12 lg:px-24 text-black">
             {/* Responsive Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:justify-center">
                 {/* Office Information */}
                 <div className="flex flex-col">
                     <h2 className="text-xl font-bold text-darkBlue mb-4">Kantor Pusat</h2>
