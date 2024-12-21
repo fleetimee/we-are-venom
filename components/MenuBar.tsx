@@ -40,13 +40,17 @@ const MenuBar = () => {
                     className={`pl-4 sm:pl-24 ${isScrolled ? "text-darkBlue" : "text-white"}`}
                     style={{ width: "300px", height: "auto" }}
                 >
-                    <Image
-                        src={isScrolled ? "/images/Logo_Color.png" : "/images/Logo_Monochrome.png"}
-                        alt="BPD Logo"
-                        width={150}
-                        height={50}
-                        priority
-                    />
+                    <Link href="/" legacyBehavior>
+                        <a>
+                            <Image
+                                src={isScrolled ? "/images/Logo_Color.png" : "/images/Logo_Monochrome.png"}
+                                alt="BPD Logo"
+                                width={150}
+                                height={50}
+                                priority
+                            />
+                        </a>
+                    </Link>
                 </div>
 
                 {/* Desktop Navigation */}
