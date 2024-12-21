@@ -9,7 +9,7 @@ import CariKarirButton from "../../../components/CariKarirButton";
 import LottieAnimation from "../../../components/Animations";
 import loadingAnimation from '../../../public/animations/loading.json';
 import animation404 from '../../../public/animations/404.json';
-import { FaUser, FaEnvelope, FaIdCard, FaMapMarkerAlt, FaPhone, FaGraduationCap, FaHeart } from 'react-icons/fa';
+import { FaUser, FaEnvelope, FaIdCard, FaIdBadge, FaRegCheckSquare, FaMedal, FaCalendar, FaPen, FaMapMarkerAlt, FaPhone, FaGraduationCap, FaHeart, FaBuilding, FaBriefcase, FaBook, FaUsers, FaAddressBook } from 'react-icons/fa';
 import Image from 'next/image';
 import type { StaticImageData } from 'next/image';
 
@@ -45,11 +45,44 @@ interface PengalamanData {
     deskripsiKerja: string;
 }
 
+interface PendidikanData {
+    namaInstitusi: String;
+    jurusan: String;
+    thnMasuk: String;
+    thnLulus: String;
+    nilai: String;
+    gelar: String;
+    achievements: String;
+}
+
+interface OrganisasiData {
+    namaOrganisasi: String;
+    posisiOrganisasi: String;
+    periode: String;
+    deskripsiKerja: String;
+}
+
+interface KontakData {
+    namaKontak: String;
+    hubKontak: String;
+    telpKontak: String;
+    emailKontak: String;
+    alamatKontak: String;
+}
+
+const handleChangeProfilePicture = () => {
+    // Logic to handle profile picture change
+    console.log("Change profile picture button clicked");
+};
+
 const Profile = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [showScrollToTop, setShowScrollToTop] = useState(false);
     const [profileData, setProfileData] = useState<ProfileData | null>(null);
     const [pengalamanData, setPengalamanData] = useState<PengalamanData | null>(null);
+    const [pendidikanData, setPendidikanData] = useState<PendidikanData | null>(null);
+    const [organisasiData, setOrganisasiData] = useState<OrganisasiData | null>(null);
+    const [kontakData, setKontakData] = useState<KontakData | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -121,6 +154,102 @@ const Profile = () => {
     }, []);
 
     useEffect(() => {
+        const fetchPendidikanData = async () => {
+            const token = localStorage.getItem("token");
+
+            if (!token) {
+                console.error("No token found in localStorage");
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:8080/api/profile/pendidikan/45`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`,
+                    },
+                });
+
+                const data = await response.json();
+                if (data.responseCode === "000") {
+                    setPendidikanData(data.data);
+                } else {
+                    console.error("Error fetching data:", data.responseMessage);
+                }
+            } catch (error) {
+                console.error("Error fetching pengalaman data:", error);
+            }
+        };
+
+        fetchPendidikanData();
+    }, []);
+
+    useEffect(() => {
+        const fetchOrganisasiData = async () => {
+            const token = localStorage.getItem("token");
+
+            if (!token) {
+                console.error("No token found in localStorage");
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:8080/api/profile/organisasi/45`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`,
+                    },
+                });
+
+                const data = await response.json();
+                if (data.responseCode === "000") {
+                    setOrganisasiData(data.data);
+                } else {
+                    console.error("Error fetching data:", data.responseMessage);
+                }
+            } catch (error) {
+                console.error("Error fetching organisasi data:", error);
+            }
+        };
+
+        fetchOrganisasiData();
+    }, []);
+
+    useEffect(() => {
+        const fetchKontakData = async () => {
+            const token = localStorage.getItem("token");
+
+            if (!token) {
+                console.error("No token found in localStorage");
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:8080/api/profile/kontak/45`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`,
+                    },
+                });
+
+                const data = await response.json();
+                if (data.responseCode === "000") {
+                    setKontakData(data.data);
+                } else {
+                    console.error("Error fetching data:", data.responseMessage);
+                }
+            } catch (error) {
+                console.error("Error fetching kontak data:", error);
+            }
+        };
+
+        fetchKontakData();
+    }, []);
+
+    useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 50) {
                 setIsScrolled(true);
@@ -173,31 +302,42 @@ const Profile = () => {
                         </div>
                     ) : profileData ? (
                         <div className="mt-6 w-11/12 lg:w-4/5 flex flex-col space-y-6">
-                            <div className="flex">
-                                <div className="w-1/4 flex justify-center items-center">
-                                    <img src={dummyProfilePic.src} alt="Profile Picture" className="rounded-full w-3/4" />
+                            <div className="flex flex-col lg:flex-row items-center lg:items-start">
+
+                                {/* Section Profile Picture */}
+                                <div className="w-full lg:w-1/4 bg-white shadow-lg flex flex-col justify-center items-center mb-6 lg:mb-0 p-4">
+                                    <div className="w-3/4 lg:w-full h-48 bg-gray-300 flex justify-center items-center">
+                                        <span className="text-gray-500">3x4 Rectangle</span>
+                                    </div>
+                                    <button 
+                                        onClick={handleChangeProfilePicture} 
+                                        className="mt-4 bg-darkBlue text-white py-2 px-4 rounded transition duration-300 ease-in-out transform hover:bg-blue-400">
+                                        Change Profile Picture
+                                    </button>
                                 </div>
-                                <div className="w-3/4 bg-white shadow-lg rounded-lg p-6">
-                                    <h2 className="text-2xl font-bold mb-4 text-darkBlue">{profileData.nama}</h2>
+
+                                {/* Section Profile Data */}
+                                <div className="w-full lg:w-3/4 bg-white shadow-lg rounded-lg p-6 lg:ml-6">
+                                    <h2 className="text-2xl font-bold mb-4 text-darkBlue">{profileData.nama || '-'}</h2>
                                     <div className="flex items-center mb-2">
                                         <FaUser className="mr-2 text-darkBlue" />
-                                        <p><strong>Username:</strong> {profileData.username}</p>
+                                        <p><strong>Username:</strong> {profileData.username || '-'}</p>
                                     </div>
                                     <div className="flex items-center mb-2">
                                         <FaEnvelope className="mr-2 text-darkBlue" />
-                                        <p><strong>Email:</strong> {profileData.email}</p>
+                                        <p><strong>Email:</strong> {profileData.email || '-'}</p>
                                     </div>
                                     <div className="flex items-center mb-2">
                                         <FaIdCard className="mr-2 text-darkBlue" />
-                                        <p><strong>No Identitas:</strong> {profileData.noIdentitas}</p>
+                                        <p><strong>No Identitas:</strong> {profileData.noIdentitas || '-'}</p>
                                     </div>
                                     <div className="flex items-center mb-2">
                                         <FaMapMarkerAlt className="mr-2 text-darkBlue" />
-                                        <p><strong>Tempat Lahir:</strong> {profileData.tempatLahir}</p>
+                                        <p><strong>Tempat Lahir:</strong> {profileData.tempatLahir || '-'}</p>
                                     </div>
                                     <div className="flex items-center mb-2">
                                         <FaMapMarkerAlt className="mr-2 text-darkBlue" />
-                                        <p><strong>Tanggal Lahir:</strong> {profileData.tglLahir}</p>
+                                        <p><strong>Tanggal Lahir:</strong> {profileData.tglLahir ? new Date(profileData.tglLahir).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' }) : '-'}</p>
                                     </div>
                                     <div className="flex items-center mb-2">
                                         <FaUser className="mr-2 text-darkBlue" />
@@ -213,11 +353,11 @@ const Profile = () => {
                                     </div>
                                     <div className="flex items-center mb-2">
                                         <FaPhone className="mr-2 text-darkBlue" />
-                                        <p><strong>Telepon:</strong> {profileData.telp}</p>
+                                        <p><strong>Telepon:</strong> {profileData.telp || '-'}</p>
                                     </div>
                                     <div className="flex items-center mb-2">
                                         <FaGraduationCap className="mr-2 text-darkBlue" />
-                                        <p><strong>Pendidikan Terakhir:</strong> {profileData.pendidikanTerakhir}</p>
+                                        <p><strong>Pendidikan Terakhir:</strong> {profileData.pendidikanTerakhir || '-'}</p>
                                     </div>
                                     <div className="flex items-center mb-2">
                                         <FaHeart className="mr-2 text-darkBlue" />
@@ -225,33 +365,144 @@ const Profile = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="w-full bg-white shadow-lg rounded-lg p-6">
-                                <h2 className="text-2xl font-bold mb-4 text-darkBlue">Pengalaman Kerja</h2>
-                                {pengalamanData ? (
-                                    <div>
-                                        <div className="flex items-center mb-2">
-                                            <FaUser className="mr-2 text-darkBlue" />
-                                            <p><strong>Nama Instansi:</strong> {pengalamanData.namaInstansi}</p>
+
+                            <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6">
+                                {/* Section Pengalaman Kerja */}
+                                <div className="w-full lg:w-1/2 bg-white shadow-lg rounded-lg p-6">
+                                    <h2 className="text-2xl font-bold mb-4 text-darkBlue">Pengalaman Kerja</h2>
+                                    {pengalamanData ? (
+                                        <div>
+                                            <div className="flex items-center mb-2">
+                                                <FaBuilding className="mr-2 text-darkBlue" />
+                                                <p><strong>Nama Instansi:</strong> {pengalamanData.namaInstansi || '-'}</p>
+                                            </div>
+                                            <div className="flex items-center mb-2">
+                                                <FaBriefcase className="mr-2 text-darkBlue" />
+                                                <p><strong>Posisi Kerja:</strong> {pengalamanData.posisiKerja || '-'}</p>
+                                            </div>
+                                            <div className="flex items-center mb-2">
+                                                <FaCalendar className="mr-2 text-darkBlue" />
+                                                <p><strong>Periode Kerja:</strong> {pengalamanData.periodeKerja || '-'}</p>
+                                            </div>
+                                            <div className="flex items-center mb-2">
+                                                <FaPen className="mr-2 text-darkBlue" />
+                                                <p><strong>Deskripsi Kerja:</strong> {pengalamanData.deskripsiKerja || '-'}</p>
+                                            </div>
                                         </div>
-                                        <div className="flex items-center mb-2">
-                                            <FaUser className="mr-2 text-darkBlue" />
-                                            <p><strong>Posisi Kerja:</strong> {pengalamanData.posisiKerja}</p>
+                                    ) : (
+                                        <p className="text-darkBlue font-bold text-xl sm:text-2xl mt-4 mb-20 text-center">
+                                            Data pengalaman kerja tidak ditemukan
+                                        </p>
+                                    )}
+                                </div>
+
+                                {/* Section Pengalaman Organisasi */}
+                                <div className="w-full lg:w-1/2 bg-white shadow-lg rounded-lg p-6">
+                                    <h2 className="text-2xl font-bold mb-4 text-darkBlue">Pengalaman Organisasi</h2>
+                                    {organisasiData ? (
+                                        <div>
+                                            <div className="flex items-center mb-2">
+                                                <FaUsers className="mr-2 text-darkBlue" />
+                                                <p><strong>Nama Organisasi:</strong> {organisasiData.namaOrganisasi || '-'}</p>
+                                            </div>
+                                            <div className="flex items-center mb-2">
+                                                <FaIdBadge className="mr-2 text-darkBlue" />
+                                                <p><strong>Posisi:</strong> {organisasiData.posisiOrganisasi || '-'}</p>
+                                            </div>
+                                            <div className="flex items-center mb-2">
+                                                <FaCalendar className="mr-2 text-darkBlue" />
+                                                <p><strong>Periode:</strong> {organisasiData.periode ? `${new Date(organisasiData.periode.split(' to ')[0]).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' })} s/d ${new Date(organisasiData.periode.split(' to ')[1]).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' })}` : '-'}</p>
+                                            </div>
+                                            <div className="flex items-center mb-2">
+                                                <FaPen className="mr-2 text-darkBlue" />
+                                                <p><strong>Deskripsi Kerja:</strong> {organisasiData.deskripsiKerja || '-'}</p>
+                                            </div>
                                         </div>
-                                        <div className="flex items-center mb-2">
-                                            <FaUser className="mr-2 text-darkBlue" />
-                                            <p><strong>Periode Kerja:</strong> {pengalamanData.periodeKerja}</p>
-                                        </div>
-                                        <div className="flex items-center mb-2">
-                                            <FaUser className="mr-2 text-darkBlue" />
-                                            <p><strong>Deskripsi Kerja:</strong> {pengalamanData.deskripsiKerja}</p>
-                                        </div>
-                                    </div>
-                                ) : (
-                                    <p className="text-darkBlue font-bold text-xl sm:text-2xl mt-4 mb-20 text-center">
-                                        Data pengalaman tidak ditemukan
-                                    </p>
-                                )}
+                                    ) : (
+                                        <p className="text-darkBlue font-bold text-xl sm:text-2xl mt-4 mb-20 text-center">
+                                            Data riwayat organisasi tidak ditemukan
+                                        </p>
+                                    )}
+                                </div>
                             </div>
+
+                            <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6">
+                                {/* Section Riwayat Pendidikan */}
+                                <div className="w-full lg:w-1/2 bg-white shadow-lg rounded-lg p-6">
+                                    <h2 className="text-2xl font-bold mb-4 text-darkBlue">Riwayat Pendidikan</h2>
+                                    {pendidikanData ? (
+                                        <div>
+                                            <div className="flex items-center mb-2">
+                                                <FaBook className="mr-2 text-darkBlue" />
+                                                <p><strong>Nama Instansi:</strong> {pendidikanData.namaInstitusi || '-'}</p>
+                                            </div>
+                                            <div className="flex items-center mb-2">
+                                                <FaUser className="mr-2 text-darkBlue" />
+                                                <p><strong>Jurusan:</strong> {pendidikanData.jurusan || '-'}</p>
+                                            </div>
+                                            <div className="flex items-center mb-2">
+                                                <FaCalendar className="mr-2 text-darkBlue" />
+                                                <p><strong>Periode Pendidikan:</strong> {pendidikanData.thnMasuk || '-'} s/d {pendidikanData.thnLulus || '-'}</p>
+                                            </div>
+                                            <div className="flex items-center mb-2">
+                                                <FaRegCheckSquare className="mr-2 text-darkBlue" />
+                                                <p><strong>Nilai:</strong> {pendidikanData.nilai || '-'}</p>
+                                            </div>
+                                            <div className="flex items-center mb-2">
+                                                <FaGraduationCap className="mr-2 text-darkBlue" />
+                                                <p><strong>Gelar:</strong> {pendidikanData.gelar || '-'}</p>
+                                            </div>
+                                            <div className="flex items-center mb-2">
+                                                <FaMedal className="mr-2 text-darkBlue" />
+                                                <p><strong>Penghargaan:</strong> {pendidikanData.achievements || '-'}</p>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <p className="text-darkBlue font-bold text-xl sm:text-2xl mt-4 mb-20 text-center">
+                                            Data riwayat pendidikan tidak ditemukan
+                                        </p>
+                                    )}
+                                </div>
+
+                                {/* Section Kontak Kerabat */}
+                                <div className="w-full lg:w-1/2 bg-white shadow-lg rounded-lg p-6">
+                                    <h2 className="text-2xl font-bold mb-4 text-darkBlue">Kontak Kerabat</h2>
+                                    {kontakData ? (
+                                        <div>
+                                            <div className="flex items-center mb-2">
+                                                <FaAddressBook className="mr-2 text-darkBlue" />
+                                                <p><strong>Nama Kontak:</strong> {kontakData.namaKontak}</p>
+                                            </div>
+                                            <div className="flex items-center mb-2">
+                                                <FaUser className="mr-2 text-darkBlue" />
+                                                <p><strong>Hubungan Kerabat:</strong> {kontakData.hubKontak}</p>
+                                            </div>
+                                            <div className="flex items-center mb-2">
+                                                <FaPhone className="mr-2 text-darkBlue" />
+                                                <p><strong>No Telepon:</strong> {kontakData.telpKontak}</p>
+                                            </div>
+                                            <div className="flex items-center mb-2">
+                                                <FaEnvelope className="mr-2 text-darkBlue" />
+                                                <p><strong>Email:</strong> {kontakData.emailKontak}</p>
+                                            </div>
+                                            <div className="flex items-center mb-2">
+                                                <FaMapMarkerAlt className="mr-2 text-darkBlue" />
+                                                <p><strong>Alamat:</strong> {kontakData.alamatKontak}</p>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <p className="text-darkBlue font-bold text-xl sm:text-2xl mt-4 mb-20 text-center">
+                                            Data kontak tidak ditemukan
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+
+                            <button 
+                                onClick={handleChangeProfilePicture} 
+                                className="mt-4 bg-darkBlue text-white py-2 px-4 rounded transition duration-300 ease-in-out transform hover:bg-blue-400">
+                                Update Data
+                            </button>
                         </div>
                     ) : (
                         <div className="flex flex-col items-center mt-10">
