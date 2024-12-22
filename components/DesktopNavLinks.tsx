@@ -71,7 +71,7 @@ function DesktopNavLinks() {
 
   const linkStyle = isScrolled
     ? 'text-darkBlue hover:underline'
-    : 'text-white hover:text-blue-300';
+    : 'text-white hover:underline hover:text-white';
 
   return (
     <NavigationMenu>
