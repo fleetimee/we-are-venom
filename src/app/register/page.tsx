@@ -2,13 +2,11 @@
 
 import React, { useState, useEffect } from "react";
 import MenuBar from "../../../components/MenuBar";
-import FooterSection from "../../../components/FooterSection";
 import FooterCopyright from "../../../components/FooterCopyright";
 import { ScrollToTopButton } from "../../../components/ScrollToTopButton";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -20,10 +18,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import DekstopNavLinksAlt from '../../../components/DekstopNavLinksAlt';
 import Image from "next/image";
-import MobileDrawer from "../../../components/MobileDrawer";
-import MobileMenuButton from "../../../components/MobileMenuButton";
 
 // Define the form schema using zod
 const formSchema = z.object({
@@ -118,35 +113,10 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white font-sans relative">
-      <nav className="container mx-auto flex justify-between items-center px-4">
-        {/* Logo Section */}
-        <div
-          className={`pl-4 sm:pl-24 text-darkBlue`}
-          style={{ width: '300px', height: 'auto' }}
-        >
-          <Image
-            src={"/images/Logo_Color.png"} // Change the logo based on scroll state
-            alt="BPD Logo"
-            width={200}
-            height={0} // Auto-scale height
-            priority
-          />
-        </div>
-
-        {/* Desktop Navigation */}
-        <div className="hidden sm:flex relative py-6 flex-col justify-center">
-          <DekstopNavLinksAlt />
-        </div>
-
-        {/* Mobile Menu Button */}
-        <div className="sm:hidden">
-          <MobileMenuButton onClick={() => { /* handle click */ }} isScrolled={isScrolled} />
-        </div>
-      </nav>
-
+    <div className="min-h-screen bg-gradient-to-r from-[#015CAC] to-[#018ED2] font-sans relative">
+      <MenuBar />
       <main className="flex items-center justify-center pt-10 sm:pt-20 min-h-screen px-4">
-        <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
+        <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md transform transition-transform duration-300 hover:scale-105">
           <h2 className="text-2xl font-bold text-center text-darkBlue mb-6">
             Daftar Akun Baru
           </h2>
@@ -253,9 +223,6 @@ const Register = () => {
       </main>
 
       {/* Section Footer */}
-      {/* <FooterSection /> */}
-
-      {/* Section Copyright */}
       <FooterCopyright />
 
       {/* Scroll to Top Button */}
