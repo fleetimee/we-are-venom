@@ -20,9 +20,7 @@ import FooterCopyright from "../../../components/FooterCopyright";
 import { ScrollToTopButton } from "../../../components/ScrollToTopButton";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
-import DekstopNavLinksAlt from "../../../components/DekstopNavLinksAlt";
-import MobileDrawer from "../../../components/MobileDrawer";
-import MobileMenuButton from "../../../components/MobileMenuButton";
+import ReCAPTCHA from "react-google-recaptcha";
 
 // Define the form schema using zod
 const formSchema = z.object({
@@ -37,6 +35,7 @@ const Login = () => {
 
   // Add a state to manage the scroll state
   const [isScrolled, setIsScrolled] = useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
 
   // Function to handle scroll event
   const handleScroll = () => {
@@ -45,6 +44,10 @@ const Login = () => {
     } else {
       setIsScrolled(false);
     }
+  };
+
+  const handleRecaptchaChange = (token: string | null) => {
+    setRecaptchaToken(token);
   };
 
   // Add event listener for scroll
@@ -66,6 +69,11 @@ const Login = () => {
 
   // Handle form submission
   const handleLogin = async (data: LoginFormValues) => {
+    if (!recaptchaToken) {
+      toast.error("Please complete the reCAPTCHA.");
+      return;
+    }
+
     setLoading(true);
     try {
       const response = await fetch("http://localhost:8080/api/login", {
@@ -73,7 +81,7 @@ const Login = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, recaptchaToken }),
       });
 
       if (!response.ok) {
@@ -117,35 +125,10 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white font-sans relative">
-      <nav className="container mx-auto flex justify-between items-center px-4">
-        {/* Logo Section */}
-        <div
-          className={`pl-4 sm:pl-24 text-darkBlue`}
-          style={{ width: "300px", height: "auto" }}
-        >
-          <Image
-            src={"/images/Logo_Color.png"} // Change the logo based on scroll state
-            alt="BPD Logo"
-            width={200}
-            height={0} // Auto-scale height
-            priority
-          />
-        </div>
-
-        {/* Desktop Navigation */}
-        <div className="hidden sm:flex relative py-6 flex-col justify-center">
-          <DekstopNavLinksAlt />
-        </div>
-
-        {/* Mobile Menu Button */}
-        <div className="sm:hidden">
-          <MobileMenuButton onClick={() => { /* handle click */ }} isScrolled={isScrolled} />
-        </div>
-      </nav>
-
+    <div className="min-h-screen bg-gradient-to-r from-[#015CAC] to-[#018ED2] font-sans relative">
+      <MenuBar />
       <main className="flex items-center justify-center pt-10 sm:pt-20 min-h-screen px-4">
-        <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
+        <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md transform transition-transform duration-300 hover:scale-105">
           <h2 className="text-2xl font-bold text-center text-darkBlue mb-6">
             Login to Your Account
           </h2>
@@ -189,6 +172,11 @@ const Login = () => {
                     <FormMessage />
                   </FormItem>
                 )}
+              />
+
+              <ReCAPTCHA
+                sitekey="6LfeCaMqAAAAAMcgLlY9M5_QH7IeEzOh-RXSr8oc"
+                onChange={handleRecaptchaChange}
               />
 
               {/* Submit Button */}
