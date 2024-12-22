@@ -19,6 +19,7 @@ function DesktopNavLinks() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [hasToken, setHasToken] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const dropdownRef = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
@@ -61,6 +62,13 @@ function DesktopNavLinks() {
     window.location.href = "/login";
   };
 
+  const handleLinkClick = (href: string) => {
+    setLoading(true);
+    setTimeout(() => {
+      window.location.href = href;
+    }, 500);
+  };
+
   const linkStyle = isScrolled
     ? 'text-darkBlue hover:underline'
     : 'text-white hover:text-blue-300';
@@ -72,6 +80,7 @@ function DesktopNavLinks() {
           <Link href="/" legacyBehavior passHref>
             <NavigationMenuLink
               className={`flex items-center font-semibold py-2 px-2 custom-underline ${linkStyle}`}
+              onClick={() => handleLinkClick('/')}
             >
               <HomeIcon fill={isScrolled ? 'darkblue' : 'white'} />
             </NavigationMenuLink>
@@ -81,6 +90,7 @@ function DesktopNavLinks() {
           <Link href="/karir" legacyBehavior passHref>
             <NavigationMenuLink
               className={`font-semibold py-2 px-2 custom-underline ${linkStyle}`}
+              onClick={() => handleLinkClick('/karir')}
             >
               Karir
             </NavigationMenuLink>
@@ -90,6 +100,7 @@ function DesktopNavLinks() {
           <Link href="/info-artikel" legacyBehavior passHref>
             <NavigationMenuLink
               className={`font-semibold py-2 px-2 custom-underline ${linkStyle}`}
+              onClick={() => handleLinkClick('/info-artikel')}
             >
               Info & Artikel
             </NavigationMenuLink>
@@ -101,6 +112,7 @@ function DesktopNavLinks() {
               <Link href="/riwayat" legacyBehavior passHref>
                 <NavigationMenuLink
                   className={`font-semibold py-2 px-2 custom-underline ${linkStyle}`}
+                  onClick={() => handleLinkClick('/riwayat')}
                 >
                   Riwayat
                 </NavigationMenuLink>
@@ -110,6 +122,7 @@ function DesktopNavLinks() {
               <Link href="/pengumuman" legacyBehavior passHref>
                 <NavigationMenuLink
                   className={`font-semibold py-2 px-2 custom-underline ${linkStyle}`}
+                  onClick={() => handleLinkClick('/pengumuman')}
                 >
                   Pengumuman
                 </NavigationMenuLink>
@@ -121,7 +134,7 @@ function DesktopNavLinks() {
               onClick={handleProfileDropdownToggle}
               >
                 <div className="flex items-center text-right">
-                <Avatar className="w-8 h-8">
+                <Avatar className="w-8 h-8 mr-2">
                   <AvatarImage src="/path-to-avatar-image.jpg" alt="User Avatar" />
                   <AvatarFallback className="text-darkBlue">AU</AvatarFallback>
                 </Avatar>
@@ -162,6 +175,7 @@ function DesktopNavLinks() {
             <Link href="/login" legacyBehavior passHref>
               <NavigationMenuLink
                 className={`font-semibold py-2 px-2 custom-underline ${linkStyle}`}
+                onClick={() => handleLinkClick('/login')}
               >
                 Login
               </NavigationMenuLink>
@@ -169,6 +183,7 @@ function DesktopNavLinks() {
           </NavigationMenuItem>
         )}
       </NavigationMenuList>
+      {loading && <div className="fixed top-0 left-0 w-full h-1 bg-blue-500 animate-pulse"></div>}
     </NavigationMenu>
   );
 }
