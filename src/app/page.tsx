@@ -26,6 +26,7 @@ import {
     AccordionTrigger,
   } from "@/components/ui/accordion"
 import RandomShapes from '../../components/RandomShapes';
+import { motion } from 'framer-motion';
 
 const Home = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -61,11 +62,11 @@ const Home = () => {
             {/* Section MenuBar */}
             <MenuBar />
 
-            <main className="pt-20 bg-gradient-to-r from-[#015CAC] to-[#018ED2] relative z-10">
+            <main className="pt-16 bg-gradient-to-r from-[#015CAC] to-[#018ED2] relative z-10">
                 {/* <RandomShapes /> */}
 
                 {/* Section Slider/Carousel */}
-                <div className="container w-full mx-auto px-4 py-8 h-auto">
+                <div className="container w-full mx-auto px-4 py-6 h-auto">
                     <Swiper
                         modules={[Navigation, Pagination, Autoplay]}
                         spaceBetween={30}
@@ -87,7 +88,7 @@ const Home = () => {
                                 </div>
                                 <div className="w-full md:w-1/2 px-4">
                                     <div className="rounded-lg relative z-0 hover:scale-105 transition-transform duration-300">
-                                        <svg className="h-full w-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                        <svg className="h-auto w-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                                             <defs>
                                                 <pattern id="img1" x="0" y="0" width="1" height="1">
                                                     <image x="0" y="0" width="80%" height="80%" preserveAspectRatio="xMaxYMax slice" href="https://images.pexels.com/photos/927022/pexels-photo-927022.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" />
@@ -111,7 +112,7 @@ const Home = () => {
                                 </div>
                                 <div className="w-full md:w-1/2 px-4">
                                     <div className="rounded-lg relative z-0 hover:scale-105 transition-transform duration-300">
-                                        <svg className="h-full w-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                        <svg className="h-auto w-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                                             <defs>
                                                 <pattern id="img2" x="0" y="0" width="1" height="1">
                                                     <image x="0" y="0" width="80%" height="80%" preserveAspectRatio="xMaxYMax slice" href="https://images.pexels.com/photos/927022/pexels-photo-927022.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" />
@@ -135,7 +136,7 @@ const Home = () => {
                                 </div>
                                 <div className="w-full md:w-1/2 px-4">
                                     <div className="rounded-lg relative z-0 hover:scale-105 transition-transform duration-300">
-                                        <svg className="h-full w-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                        <svg className="h-auto w-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                                             <defs>
                                                 <pattern id="img3" x="0" y="0" width="1" height="1">
                                                     <image x="0" y="0" width="80%" height="80%" preserveAspectRatio="xMaxYMax slice" href="https://images.pexels.com/photos/927022/pexels-photo-927022.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" />
@@ -206,7 +207,7 @@ const Home = () => {
                 </div>
 
                 {/* Section Intermezzo */}
-                <div className="flex flex-col justify-center items-center w-full bg-white h-auto py-8 relative z-10">
+                <div className="flex flex-col justify-center items-center w-full bg-white h-auto py-6 relative z-10">
                     <h1 className="text-darkBlue font-semibold text-3xl text-center px-4 md:px-0">
                         Mari Berkembang Bersama Kami
                     </h1>
@@ -285,8 +286,19 @@ const Home = () => {
                 {/* </div> */}
 
                 {/* Section FAQ's */}
-                <div className="flex flex-col justify-center items-center w-full bg-white h-auto relative z-10 pb-16 pt-10">
-                    <h1 className="text-darkBlue font-semibold text-3xl mt-30 text-center">Frequently Answer Question</h1>
+                <div className="flex flex-col justify-center items-center w-full bg-white h-auto relative z-10 pb-12 pt-8">
+                    <h1 className="text-darkBlue font-semibold text-3xl mt-30 text-center">Sekilas BPD DIY</h1>
+                    <br />
+                    <div className="w-full flex justify-center px-4 md:px-0">
+                        <div className="relative w-full max-w-4xl overflow-hidden rounded-lg shadow-lg" style={{ paddingBottom: '40%' }}>
+                            <iframe className="absolute top-0 left-0 w-full h-full" width="100%" height="100%" src="https://www.youtube.com/embed/_NpIstIZZb0?si=qlxepqU7xiv7mfoS" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Section FAQ's */}
+                <div className="flex flex-col justify-center items-center w-full bg-white h-auto relative z-10 pb-12 pt-8">
+                    <h1 className="text-darkBlue font-semibold text-3xl mt-30 text-center">Frequently Asked Questions</h1>
                     <br />
                     {/* <p style={{ fontFamily: 'Open Sans, sans-serif', fontSize: '1rem', fontWeight: 400, lineHeight: 1.8, color: '#222', textAlign: 'center', marginLeft: '14rem', marginRight: '14rem' }}>
                         BPD DIY selalu mengusahakan agar karyawan dapat bekerja sesuai dengan potensi dan kemampuan mereka serta mempelajari hal-hal baru setiap harinya. Kami percaya jika hal itu dibudayakan di dalam lingkungan BPD DIY, akan membangun semangat untuk terus berinovasi.
@@ -295,6 +307,7 @@ const Home = () => {
                         <AccordionItem value="item-1">
                             <AccordionTrigger className="w-full font-bold text-darkBlue text-xl">Apa saja posisi yang biasanya tersedia di BPD DIY?</AccordionTrigger>
                                 <AccordionContent className="w-full">
+                                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
                                 Bank BPD DIY sering membuka lowongan untuk posisi seperti:
                                 <ul className="list-disc pl-6">
                                     <li>Teller</li>
@@ -305,11 +318,13 @@ const Home = () => {
                                     <li>Auditor Internal</li>
                                     <li>Staf Keuangan dan Administrasi</li>
                                 </ul>
+                                </motion.div>
                                 </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-2">
                             <AccordionTrigger className="w-full font-bold text-darkBlue text-xl">Apa saja persyaratan umum untuk melamar di BPD DIY?</AccordionTrigger>
                             <AccordionContent className="w-full">
+                            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
                             Persyaratan umum biasanya mencakup:
                             <ul className="list-disc pl-6">
                                 <li>Warga Negara Indonesia (WNI).</li>
@@ -318,11 +333,13 @@ const Home = () => {
                                 <li>IPK minimal 3.00 (skala 4.00).</li>
                                 <li>Memiliki kemampuan komunikasi yang baik dan orientasi pada pelayanan.</li>
                             </ul>
+                            </motion.div>
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-3">
                             <AccordionTrigger className="w-full font-bold text-darkBlue text-xl">Bagaimana cara melamar pekerjaan di BPD DIY?</AccordionTrigger>
                             <AccordionContent className="w-full">
+                            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
                             Anda dapat melamar pekerjaan melalui langkah berikut:
                             <ul className="list-disc pl-6">
                                 <li>Kunjungi website resmi BPD DIY atau portal karier yang bekerja sama dengan bank.</li>
@@ -331,11 +348,13 @@ const Home = () => {
                                 <li>Siapkan dokumen pendukung seperti CV, surat lamaran, ijazah, transkrip nilai, dan pas foto.</li>
                                 <li>Kirim lamaran melalui sistem online, email resmi, atau secara langsung ke kantor pusat BPD DIY jika diinstruksikan.</li>
                             </ul>
+                            </motion.div>
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-4">
                             <AccordionTrigger className="w-full font-bold text-darkBlue text-xl">Apa tahapan seleksi yang harus dilalui?</AccordionTrigger>
                             <AccordionContent className="w-full">
+                            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
                             Tahapan seleksi biasanya meliputi:
                             <ul className="list-disc pl-6">
                                 <li>Seleksi administrasi berkas lamaran.</li>
@@ -344,18 +363,23 @@ const Home = () => {
                                 <li>Seleksi kompetensi dan keterampilan.</li>
                                 <li>Penempatan kerja dan orientasi.</li>
                             </ul>
+                            </motion.div>
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-5">
                             <AccordionTrigger className="w-full font-bold text-darkBlue text-xl">Apakah fresh graduate dapat melamar di BPD DIY?</AccordionTrigger>
                             <AccordionContent className="w-full">
+                            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
                             Ya, BPD DIY biasanya membuka kesempatan bagi fresh graduate melalui program Officer Development Program (ODP) atau posisi entry-level lainnya. Program ini dirancang untuk melatih calon pegawai baru agar siap berkarier di dunia perbankan.
+                            </motion.div>
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-6">
                             <AccordionTrigger className="w-full font-bold text-darkBlue text-xl">Apakah ada kontrak kerja setelah diterima?</AccordionTrigger>
                             <AccordionContent className="w-full">
+                            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
                             Setelah diterima, pegawai biasanya akan menjalani masa percobaan (probation) selama 3–6 bulan. Setelah masa probation selesai, pegawai akan dikontrak atau diangkat menjadi pegawai tetap, tergantung pada penilaian kinerja selama masa percobaan.
+                            </motion.div>
                             </AccordionContent>
                         </AccordionItem>
                     </Accordion>
