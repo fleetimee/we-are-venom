@@ -8,6 +8,8 @@ const MenuBar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [hasToken, setHasToken] = useState(false);
+    const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -26,6 +28,20 @@ const MenuBar = () => {
 
     const handleDrawerToggle = () => {
         setIsDrawerOpen(!isDrawerOpen);
+    };
+
+    const handleProfileDropdownToggle = () => {
+        setIsProfileDropdownOpen(!isProfileDropdownOpen);
+    };
+
+    const handleSignOut = () => {
+        localStorage.removeItem("token");
+        window.location.href = "/login";
+    };
+
+    const handleMenuClick = (href: string) => {
+        setIsLoading(true);
+        window.location.href = href;
     };
 
     return (
@@ -84,61 +100,93 @@ const MenuBar = () => {
                     </div>
                     <ul className="flex flex-col items-center justify-center space-y-6 mt-8">
                         <li>
-                            <Link href="/" legacyBehavior>
-                                <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
-                                    Home
-                                </a>
-                            </Link>
+                            <a
+                                className="text-darkBlue text-lg hover:text-blue-500"
+                                onClick={() => handleMenuClick("/")}
+                            >
+                                Home
+                            </a>
                         </li>
                         <li>
-                            <Link href="/karir" legacyBehavior>
-                                <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
-                                    Karir
-                                </a> 
-                            </Link>
+                            <a
+                                className="text-darkBlue text-lg hover:text-blue-500"
+                                onClick={() => handleMenuClick("/karir")}
+                            >
+                                Karir
+                            </a>
                         </li>
                         <li>
-                            <Link href="/info-artikel" legacyBehavior>
-                                <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
-                                    Info & Artikel
-                                </a>
-                            </Link>
+                            <a
+                                className="text-darkBlue text-lg hover:text-blue-500"
+                                onClick={() => handleMenuClick("/info-artikel")}
+                            >
+                                Info & Artikel
+                            </a>
                         </li>
                         {hasToken && (
                             <>
                                 <li>
-                                    <Link href="/riwayat" legacyBehavior>
-                                        <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
-                                            Riwayat
-                                        </a>
-                                    </Link>
+                                    <a
+                                        className="text-darkBlue text-lg hover:text-blue-500"
+                                        onClick={() => handleMenuClick("/riwayat")}
+                                    >
+                                        Riwayat
+                                    </a>
                                 </li>
                                 <li>
-                                    <Link href="/pengumuman" legacyBehavior>
-                                        <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
-                                            Pengumuman
-                                        </a>
-                                    </Link>
+                                    <a
+                                        className="text-darkBlue text-lg hover:text-blue-500"
+                                        onClick={() => handleMenuClick("/pengumuman")}
+                                    >
+                                        Pengumuman
+                                    </a>
                                 </li>
-                                <li>
-                                    <Link href="/profil" legacyBehavior>
-                                        <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
-                                            Profil
-                                        </a>
-                                    </Link>
+                                <li className="relative">
+                                    <button
+                                        className="text-darkBlue text-lg hover:text-blue-500"
+                                        onClick={handleProfileDropdownToggle}
+                                    >
+                                        Akun
+                                    </button>
+                                    {isProfileDropdownOpen && (
+                                        <ul className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-md z-50">
+                                            <li>
+                                                <a
+                                                    className="block px-4 py-2 text-darkBlue hover:bg-gray-100"
+                                                    onClick={() => handleMenuClick("/profil")}
+                                                >
+                                                    Profil
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <button
+                                                    className="block w-full text-left px-4 py-2 text-darkBlue hover:bg-gray-100"
+                                                    onClick={handleSignOut}
+                                                >
+                                                    Keluar
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    )}
                                 </li>
                             </>
                         )}
                         {!hasToken && (
                             <li>
-                                <Link href="/login" legacyBehavior>
-                                    <a className="text-darkBlue text-lg hover:text-blue-500" onClick={handleDrawerToggle}>
-                                        Login
-                                    </a>
-                                </Link>
+                                <a
+                                    className="text-darkBlue text-lg hover:text-blue-500"
+                                    onClick={() => handleMenuClick("/login")}
+                                >
+                                    Login
+                                </a>
                             </li>
                         )}
                     </ul>
+                </div>
+            )}
+            {isLoading && (
+                <div className="fixed inset-0 bg-white bg-opacity-75 flex items-center justify-center z-50">
+                    <div className="loader"></div>
                 </div>
             )}
         </header>
