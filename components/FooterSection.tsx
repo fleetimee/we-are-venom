@@ -32,7 +32,7 @@ const FooterSection = () => {
                         <li>
                             <button
                                 onClick={() => window.open("https://facebook.com", "_blank")}
-                                className="flex items-center hover:text-darkBlue"
+                                className="flex items-center hover:text-blue-700 transition"
                             >
                                 <FontAwesomeIcon icon={faFacebook} className="mr-2" />
                                 FACEBOOK
@@ -41,7 +41,7 @@ const FooterSection = () => {
                         <li>
                             <button
                                 onClick={() => window.open("https://instagram.com", "_blank")}
-                                className="flex items-center hover:text-purple-700"
+                                className="flex items-center hover:text-purple-700 transition"
                             >
                                 <FontAwesomeIcon icon={faInstagram} className="mr-2" />
                                 INSTAGRAM
@@ -50,7 +50,7 @@ const FooterSection = () => {
                         <li>
                             <button
                                 onClick={() => window.open("https://youtube.com", "_blank")}
-                                className="flex items-center hover:text-red-700"
+                                className="flex items-center hover:text-red-700 transition"
                             >
                                 <FontAwesomeIcon icon={faYoutube} className="mr-2" />
                                 YOUTUBE
